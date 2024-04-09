@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project", "Project\Project.csproj", "{2B477AB8-5A75-4612-9F19-DD7781370517}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{1AEBE3DB-5F02-44C5-BDA2-02BD387B464C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseHandler", "DatabaseHandler\DatabaseHandler.csproj", "{F1DABDF3-B731-447F-AB1B-BD431A059E34}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B477AB8-5A75-4612-9F19-DD7781370517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B477AB8-5A75-4612-9F19-DD7781370517}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B477AB8-5A75-4612-9F19-DD7781370517}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B477AB8-5A75-4612-9F19-DD7781370517}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AEBE3DB-5F02-44C5-BDA2-02BD387B464C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AEBE3DB-5F02-44C5-BDA2-02BD387B464C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AEBE3DB-5F02-44C5-BDA2-02BD387B464C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AEBE3DB-5F02-44C5-BDA2-02BD387B464C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1DABDF3-B731-447F-AB1B-BD431A059E34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1DABDF3-B731-447F-AB1B-BD431A059E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1DABDF3-B731-447F-AB1B-BD431A059E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1DABDF3-B731-447F-AB1B-BD431A059E34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

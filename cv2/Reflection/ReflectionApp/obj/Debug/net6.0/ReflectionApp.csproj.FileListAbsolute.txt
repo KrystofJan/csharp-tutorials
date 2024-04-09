@@ -1,0 +1,15 @@
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\bin\Debug\net6.0\ReflectionApp.exe
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\bin\Debug\net6.0\ReflectionApp.deps.json
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\bin\Debug\net6.0\ReflectionApp.runtimeconfig.json
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\bin\Debug\net6.0\ReflectionApp.dll
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\bin\Debug\net6.0\ReflectionApp.pdb
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\obj\Debug\net6.0\ReflectionApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\obj\Debug\net6.0\ReflectionApp.AssemblyInfoInputs.cache
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\obj\Debug\net6.0\ReflectionApp.AssemblyInfo.cs
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\obj\Debug\net6.0\ReflectionApp.csproj.CoreCompileInputs.cache
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\obj\Debug\net6.0\ReflectionApp.sourcelink.json
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\obj\Debug\net6.0\ReflectionApp.dll
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\obj\Debug\net6.0\refint\ReflectionApp.dll
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\obj\Debug\net6.0\ReflectionApp.pdb
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\obj\Debug\net6.0\ReflectionApp.genruntimeconfig.cache
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\ReflectionApp\obj\Debug\net6.0\ref\ReflectionApp.dll

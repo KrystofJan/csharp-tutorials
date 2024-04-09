@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "objBduRMwmfaVc6wkNuicftiGw++EFjizxrr3ir2NbvVwfMT8+5oCeOM9ZaWSdg/xsmyPZf8MfS1qnU4lmpLHg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\zahry\\CSharp2-tutorials\\cv2\\Reflection\\MyLib\\MyLib.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zahry\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.27\\microsoft.netcore.app.ref.6.0.27.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.27\\microsoft.windowsdesktop.app.ref.6.0.27.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.27\\microsoft.aspnetcore.app.ref.6.0.27.nupkg.sha512"
+  ],
+  "logs": []
+}

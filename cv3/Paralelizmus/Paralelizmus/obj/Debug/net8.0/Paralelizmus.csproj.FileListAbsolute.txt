@@ -1,0 +1,15 @@
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\bin\Debug\net8.0\Paralelizmus.exe
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\bin\Debug\net8.0\Paralelizmus.deps.json
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\bin\Debug\net8.0\Paralelizmus.runtimeconfig.json
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\bin\Debug\net8.0\Paralelizmus.dll
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\bin\Debug\net8.0\Paralelizmus.pdb
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\obj\Debug\net8.0\Paralelizmus.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\obj\Debug\net8.0\Paralelizmus.AssemblyInfoInputs.cache
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\obj\Debug\net8.0\Paralelizmus.AssemblyInfo.cs
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\obj\Debug\net8.0\Paralelizmus.csproj.CoreCompileInputs.cache
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\obj\Debug\net8.0\Paralelizmus.sourcelink.json
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\obj\Debug\net8.0\Paralelizmus.dll
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\obj\Debug\net8.0\refint\Paralelizmus.dll
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\obj\Debug\net8.0\Paralelizmus.pdb
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\obj\Debug\net8.0\Paralelizmus.genruntimeconfig.cache
+C:\Users\zahry\CSharp2-tutorials\cv3\Paralelizmus\Paralelizmus\obj\Debug\net8.0\ref\Paralelizmus.dll

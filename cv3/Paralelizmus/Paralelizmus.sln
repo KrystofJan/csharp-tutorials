@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paralelizmus", "Paralelizmus\Paralelizmus.csproj", "{A1BC7669-2DEA-4C36-AF31-ABD5B251BF70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1BC7669-2DEA-4C36-AF31-ABD5B251BF70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1BC7669-2DEA-4C36-AF31-ABD5B251BF70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1BC7669-2DEA-4C36-AF31-ABD5B251BF70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1BC7669-2DEA-4C36-AF31-ABD5B251BF70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

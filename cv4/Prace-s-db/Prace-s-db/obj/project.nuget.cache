@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "1CD0dZGW/Sjox2vNgHncizjElzQzvOX8fYqSw2Y2jBgHwH1hltmKfR6AwRm4VxgbLQWSoRTfUZyS4Lk8pb684A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\zahry\\CSharp2-tutorials\\cv4\\Prace-s-db\\Prace-s-db\\Prace-s-db.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zahry\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\dapper.simplecrud\\2.3.0\\dapper.simplecrud.2.3.0.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\microsoft.csharp\\4.4.0\\microsoft.csharp.4.4.0.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.3\\microsoft.data.sqlite.core.8.0.3.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.1.8\\sqlitepclraw.bundle_green.2.1.8.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\sqlitepclraw.core\\2.1.8\\sqlitepclraw.core.2.1.8.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.8\\sqlitepclraw.lib.e_sqlite3.2.1.8.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.8\\sqlitepclraw.provider.e_sqlite3.2.1.8.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+  ],
+  "logs": []
+}

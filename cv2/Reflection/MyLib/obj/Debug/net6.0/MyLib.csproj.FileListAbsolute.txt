@@ -1,0 +1,12 @@
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\bin\Debug\net6.0\MyLib.deps.json
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\bin\Debug\net6.0\MyLib.dll
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\bin\Debug\net6.0\MyLib.pdb
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\obj\Debug\net6.0\MyLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\obj\Debug\net6.0\MyLib.AssemblyInfoInputs.cache
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\obj\Debug\net6.0\MyLib.AssemblyInfo.cs
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\obj\Debug\net6.0\MyLib.csproj.CoreCompileInputs.cache
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\obj\Debug\net6.0\MyLib.sourcelink.json
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\obj\Debug\net6.0\MyLib.dll
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\obj\Debug\net6.0\refint\MyLib.dll
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\obj\Debug\net6.0\MyLib.pdb
+C:\Users\zahry\CSharp2-tutorials\cv2\Reflection\MyLib\obj\Debug\net6.0\ref\MyLib.dll

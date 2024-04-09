@@ -1,0 +1,65 @@
+﻿<Window x:Class="CSharp6_WPF.MainWindow"
+        x:Name="Win"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSharp6_WPF"
+        mc:Ignorable="d"
+        Title="Moje aplikace" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <DataGrid 
+                Grid.Row="0"
+                Margin="10"
+                x:Name="gridEl"
+                ItemsSource="{Binding customers}" 
+                AutoGenerateColumns="False"
+                CanUserReorderColumns="False" 
+                CanUserAddRows="False" >
+            <DataGrid.Columns>
+                <!-- <DataGridTextColumn Header="rand" Binding="{Binding ButtonText, ElementName=Win}" /> -->
+                <DataGridTextColumn 
+                    Header="Jméno"
+                    Binding="{Binding FirstName}" />
+                <DataGridTextColumn 
+                    Header="Příjmení"
+                    Binding="{Binding LastName}" />
+                <DataGridTextColumn 
+                    Header="Věk" 
+                    Binding="{Binding Age}"/> 
+                <DataGridTemplateColumn
+                    Header="Odstranit uzivatele">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button 
+                                    Content="Odstranit"
+                                    Click="RemoveCustomer"/>    
+                                
+                                <Button 
+                                    Content="Anonymizovat"
+                                    Click="Anonynize"/>
+                                
+                                <Button 
+                                    Content="Upravit"
+                                    Click="EditCustomer"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button 
+            Grid.Row="1"
+            Margin="{Binding ButtonMargin}" 
+            Content="{Binding ButtonText}"
+            Click="AddCustomer"/>
+    </Grid>
+</Window>

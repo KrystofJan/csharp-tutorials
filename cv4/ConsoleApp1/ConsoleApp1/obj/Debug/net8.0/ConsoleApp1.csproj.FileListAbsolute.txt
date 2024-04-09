@@ -1,0 +1,13 @@
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.csproj.AssemblyReference.cache
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\PLC_Lab7_exprLexer.cs
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\PLC_Lab7_exprParser.cs
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\PLC_Lab7_exprListener.cs
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\PLC_Lab7_exprBaseListener.cs
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\PLC_Lab7_exprVisitor.cs
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\PLC_Lab7_exprBaseVisitor.cs
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.csproj.Antlr4GeneratedCodeFileListAbsolute.txt
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfoInputs.cache
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfo.cs
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\zahry\CSharp2-tutorials\cv4\ConsoleApp1\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.sourcelink.json
