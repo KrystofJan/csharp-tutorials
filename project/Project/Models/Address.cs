@@ -1,8 +1,10 @@
 using System.Security.Authentication;
+using DatabaseAttrs;
 
 namespace Models;
 
 public class Address {
+	[Identifier]
 	public int AddressId { get; set; }
 	public string Country { get; set; }
 	public string Province { get; set; }

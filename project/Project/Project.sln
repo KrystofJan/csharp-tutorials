@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseHandler", "DatabaseHandler\DatabaseHandler.csproj", "{F1DABDF3-B731-447F-AB1B-BD431A059E34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAttrs", "DatabaseAttrs\DatabaseAttrs.csproj", "{CA6D9028-0E27-4485-8298-C7583ADA0B76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{F1DABDF3-B731-447F-AB1B-BD431A059E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1DABDF3-B731-447F-AB1B-BD431A059E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1DABDF3-B731-447F-AB1B-BD431A059E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA6D9028-0E27-4485-8298-C7583ADA0B76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA6D9028-0E27-4485-8298-C7583ADA0B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA6D9028-0E27-4485-8298-C7583ADA0B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA6D9028-0E27-4485-8298-C7583ADA0B76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -161,6 +161,16 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "DatabaseAttrs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/DatabaseAttrs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DatabaseAttrs.dll": {}
+        }
       }
     }
   },
@@ -294,10 +304,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "DatabaseAttrs/1.0.0": {
+      "type": "project",
+      "path": "../DatabaseAttrs/DatabaseAttrs.csproj",
+      "msbuildProject": "../DatabaseAttrs/DatabaseAttrs.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "DatabaseAttrs >= 1.0.0",
       "Microsoft.Data.Sqlite.Core >= 8.0.4",
       "SQLitePCLRaw.bundle_green >= 2.1.8"
     ]
@@ -333,7 +349,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\DatabaseAttrs\\DatabaseAttrs.csproj": {
+              "projectPath": "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\DatabaseAttrs\\DatabaseAttrs.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionApp", "Reflection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLib", "MyLib\MyLib.csproj", "{2824BBE3-E0DE-4E64-A43C-E206B2298D3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAttributes", "DatabaseAttributes\DatabaseAttributes.csproj", "{D0E68DAE-AB32-4CA3-944C-7EE842D6D8A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2824BBE3-E0DE-4E64-A43C-E206B2298D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2824BBE3-E0DE-4E64-A43C-E206B2298D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2824BBE3-E0DE-4E64-A43C-E206B2298D3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0E68DAE-AB32-4CA3-944C-7EE842D6D8A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0E68DAE-AB32-4CA3-944C-7EE842D6D8A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0E68DAE-AB32-4CA3-944C-7EE842D6D8A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0E68DAE-AB32-4CA3-944C-7EE842D6D8A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

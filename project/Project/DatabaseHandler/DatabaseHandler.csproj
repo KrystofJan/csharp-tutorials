@@ -19,4 +19,8 @@
       <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DatabaseAttrs\DatabaseAttrs.csproj" />
+    </ItemGroup>
+
 </Project>
