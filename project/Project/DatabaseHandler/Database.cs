@@ -22,9 +22,6 @@ public class Database {
 			
 			using SqliteCommand selectMore = connection.CreateCommand();
 
-			ModelInfo modelInfo = new ModelInfo(TableNames.ADDRESS);
-			object model = modelInfo.Instance;
-			
 			selectMore.CommandText = $"Select * from {TableNames.TEST}";
 			using SqliteDataReader reader = selectMore.ExecuteReader();
 

@@ -1,0 +1,12 @@
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\bin\Debug\net8.0\DatabaseAttrs.deps.json
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\bin\Debug\net8.0\DatabaseAttrs.dll
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\bin\Debug\net8.0\DatabaseAttrs.pdb
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\obj\Debug\net8.0\DatabaseAttrs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\obj\Debug\net8.0\DatabaseAttrs.AssemblyInfoInputs.cache
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\obj\Debug\net8.0\DatabaseAttrs.AssemblyInfo.cs
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\obj\Debug\net8.0\DatabaseAttrs.csproj.CoreCompileInputs.cache
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\obj\Debug\net8.0\DatabaseAttrs.sourcelink.json
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\obj\Debug\net8.0\DatabaseAttrs.dll
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\obj\Debug\net8.0\refint\DatabaseAttrs.dll
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\obj\Debug\net8.0\DatabaseAttrs.pdb
+C:\Users\zahry\CSharp2-tutorials\project\Project\DatabaseAttrs\obj\Debug\net8.0\ref\DatabaseAttrs.dll

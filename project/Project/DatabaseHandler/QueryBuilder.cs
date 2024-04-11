@@ -1,3 +1,4 @@
+using System.Reflection;
 using DatabaseAttrs;
 
 namespace DatabaseHandler;
@@ -5,16 +6,20 @@ namespace DatabaseHandler;
 public class QueryBuilder {
 	
 	
-	// THIS SHOULD WORK
-	// TODO: Check
-	private string InsertParams(ModelInfo modelInfo) {
+
+	public static string InsertParams(ModelInfo modelInfo) {
 		return string.Join(", ", modelInfo.Properties
-			.ToList()
-			.Where(p => !p.IsDefined(typeof(IdentifierAttribute), false))
-			.Select(p =>
-			{
-				bool hasForeignObjectAttr = p.IsDefined(typeof(ForeignObjectAttribute), false);
-				return hasForeignObjectAttr ? p.ToString() : ModelInfo.GetModelsId(modelInfo.Type.ToString());
+			.Where(p => !modelInfo.AttrsOnProperties.ContainsKey(p) ||
+			            modelInfo.AttrsOnProperties[p] is not IdentifierAttribute)
+			.Select(p => {
+				bool hasForeignObjectAttr = modelInfo.AttrsOnProperties.ContainsKey(p) &&
+				                            modelInfo.AttrsOnProperties[p] is ForeignObjectAttribute;
+				if (!hasForeignObjectAttr) {
+					return p.Name;
+				}
+
+				PropertyInfo? foreignKeyInfo = ModelInfoFactory.GetModelsId(modelInfo.Type.ToString());
+				return foreignKeyInfo != null ? foreignKeyInfo.Name : "";
 			}));
 	}
 }
