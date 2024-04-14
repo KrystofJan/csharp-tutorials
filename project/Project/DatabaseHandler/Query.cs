@@ -3,29 +3,24 @@ using System.Reflection;
 namespace DatabaseHandler;
 
 
-public delegate bool Condition();
+public class QueryBuilder {
+	private string Result = "";
 
-public class SelectQuery {
-	private string SelectStr { get; set; }
-	private string FromStr { get; set; }
-	private string WhereStr { get; set; }
-
-	private object PrimaryObject { get; set; }
-
-	public SelectQuery From(object Table) {
-		PrimaryObject = Table;
-		ModelInfo mi = new ModelInfo(Table);
-		FromStr = $"From {mi.ModelName} ";
+	private void addStr(string str) {
+		Result += $" {str}";
+	}
+	
+	public QueryBuilder SELECT(string tableName) {
+		Result = $"SELECT * FROM {tableName} ";
 		return this;
 	}
 
-	public SelectQuery InnerJoin(object Table) {
-		ModelInfo mi = new ModelInfo(Table);
-		// FromStr = $" inner join {mi.ModelName} on {ModelInfoFactory.}"
+	public QueryBuilder ADD_CONDITION(string paramName, string cmp) {
+		addStr($"WHERE {paramName} {cmp} @{paramName}");
 		return this;
 	}
 
-	public string CreateStringFromQuery() {
-		return $"{SelectStr}c{FromStr} {WhereStr}";
+	public override string ToString() {
+		return Result;
 	}
 }

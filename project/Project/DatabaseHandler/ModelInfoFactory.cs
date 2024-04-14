@@ -24,6 +24,19 @@ public class ModelInfoFactory {
 		return Activator.CreateInstance(type);
 	}
 
+	public static List<ModelInfo> GetModels() {
+		string modelsLibPath = Path.GetFullPath("../../../../Models/bin/Debug/net8.0/Models.dll");
+		Assembly assembly = Assembly.LoadFile(modelsLibPath);
+		Type[] types = assembly.GetTypes();
+
+		List<ModelInfo> modelInfos = new List<ModelInfo>();
+		foreach (var type in types) {
+			ModelInfo modelInfo = new ModelInfo(type);
+			modelInfos.Add(modelInfo);
+		}
+		return modelInfos;
+	}
+	
 	public static Dictionary<PropertyInfo, Attribute> FindAttrsOnProperties(PropertyInfo[] propertyInfos) {
 		Dictionary<PropertyInfo, Attribute> result = new Dictionary<PropertyInfo, Attribute>();
 		foreach (var prop in propertyInfos) {

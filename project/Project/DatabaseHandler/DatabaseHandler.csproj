@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DatabaseAttrs\DatabaseAttrs.csproj" />
+      <ProjectReference Include="..\Models\Models.csproj" />
     </ItemGroup>
 
 </Project>

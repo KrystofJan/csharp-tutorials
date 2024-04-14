@@ -32,4 +32,11 @@ public class ModelInfo {
 		Methods = Type.GetMethods();
 		AttrsOnProperties = ModelInfoFactory.FindAttrsOnProperties(Properties);
 	}
+	public  ModelInfo(Type type) {
+		Instance = ModelInfoFactory.GetModel(type.ToString(), out type);
+		Type = type;
+		Properties = Type.GetProperties();
+		Methods = Type.GetMethods();
+		AttrsOnProperties = ModelInfoFactory.FindAttrsOnProperties(Properties);
+	}
 }

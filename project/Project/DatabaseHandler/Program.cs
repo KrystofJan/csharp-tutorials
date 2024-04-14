@@ -1,4 +1,5 @@
 ﻿using System;
+using Models;
 
 namespace DatabaseHandler;
 // Note: actual namespace depends on the project name.
@@ -6,16 +7,8 @@ namespace DatabaseHandler;
 internal class Program {
 	
 	static void Main(string[] args) {
-		Database dh = Database.getInstance();
-		dh.Test();
+		object addr = Database<Student>.Select(1);
 		
-		ModelInfo modelInfo = new ModelInfo(TableNames.STUDY_PROGRAM);
-		object model = modelInfo.Instance;
-		SelectQuery t = new SelectQuery().From(model);
-
-		string query = QueryBuilder.InsertParams(modelInfo);
-		Console.WriteLine(query);
 		Console.WriteLine();
-		
 	}
 }

@@ -10,6 +10,7 @@
         "dependencies": {
           "DatabaseAttrs": "1.0.0",
           "Microsoft.Data.Sqlite.Core": "8.0.4",
+          "Models": "1.0.0",
           "SQLitePCLRaw.bundle_green": "2.1.8"
         },
         "runtime": {
@@ -175,6 +176,14 @@
         "runtime": {
           "DatabaseAttrs.dll": {}
         }
+      },
+      "Models/1.0.0": {
+        "dependencies": {
+          "DatabaseAttrs": "1.0.0"
+        },
+        "runtime": {
+          "Models.dll": {}
+        }
       }
     }
   },
@@ -227,6 +236,11 @@
       "hashPath": "system.memory.4.5.3.nupkg.sha512"
     },
     "DatabaseAttrs/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Models/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

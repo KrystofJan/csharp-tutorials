@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Prace-s-db")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+618ba56069c7cf6307d9f3bc1ee862a55b5b61b9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de84ab3ad6cb0fcd94c58fa1d9e39714a173e6d6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Prace-s-db")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Prace-s-db")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -171,6 +171,19 @@
         "runtime": {
           "bin/placeholder/DatabaseAttrs.dll": {}
         }
+      },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "DatabaseAttrs": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
+        }
       }
     }
   },
@@ -309,12 +322,18 @@
       "type": "project",
       "path": "../DatabaseAttrs/DatabaseAttrs.csproj",
       "msbuildProject": "../DatabaseAttrs/DatabaseAttrs.csproj"
+    },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../Models/Models.csproj",
+      "msbuildProject": "../Models/Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "DatabaseAttrs >= 1.0.0",
       "Microsoft.Data.Sqlite.Core >= 8.0.4",
+      "Models >= 1.0.0",
       "SQLitePCLRaw.bundle_green >= 2.1.8"
     ]
   },
@@ -352,6 +371,9 @@
           "projectReferences": {
             "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\DatabaseAttrs\\DatabaseAttrs.csproj": {
               "projectPath": "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\DatabaseAttrs\\DatabaseAttrs.csproj"
+            },
+            "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\Models\\Models.csproj"
             }
           }
         }
