@@ -8,16 +8,16 @@ namespace PraceSDB;
 public class Customer {
 	[Key] // reknu mu, ze tohle je primarni klics
 	public int Id { get; set; }
+
 	public string Name { get; set; }
 	public string Address { get; set; }
 }
 
 internal class Program {
-	
 	static void Main(string[] args) {
 		string connectionString = "Data Source=janousekcviko5.db;";
 		SimpleCRUD.SetDialect(SimpleCRUD.Dialect.SQLite);
-		
+
 		using (SqliteConnection connection = new SqliteConnection(connectionString)) {
 			// SqliteTransaction transaction = connection.BeginTransaction();
 			// connection.Execute(
@@ -41,6 +41,7 @@ internal class Program {
 			foreach (var customer in customers) {
 				Console.WriteLine($"{customer.Id}: {customer.Name} - {customer.Address}");
 			}
+
 			int? id = connection.Insert(new Customer() {Name = "aaa", Address = "21 street"});
 
 			connection.Open();
@@ -56,6 +57,7 @@ internal class Program {
 		// cmd.ExecuteNonQuery();
 		// connection.Close();
 	}
+
 	static void SQLiteWorkFlow() {
 		string connectionString = "Data Source=janousekcviko5.db;";
 		using (SqliteConnection connection = new SqliteConnection(connectionString)) {

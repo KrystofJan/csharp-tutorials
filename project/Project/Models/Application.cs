@@ -4,16 +4,16 @@ namespace Models;
 
 public class Application {
 	[Identifier]
-	public int AplicationId { get; set; }
+	public int ApplicationId { get; set; }
 	
 	[ForeignObject]
-	public StudyProgram PrimaryStudyProgram { get; set; }
+	public StudyProgram PrimaryProgram { get; set; }
 	
 	[ForeignObject]
-	public StudyProgram? SecondaryStudyProgram { get; set; }
+	public StudyProgram? SecondaryProgram { get; set; }
 	
 	[ForeignObject]
-	public StudyProgram? TetiaryStudyProgram { get; set; }
+	public StudyProgram? TertiaryProgram { get; set; }
 	
 	[ForeignObject]
 	public Student Student { get; set; }

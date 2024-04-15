@@ -15,6 +15,16 @@ public class QueryBuilder {
 		return this;
 	}
 
+	public QueryBuilder Insert(string tableName) {
+		Result = $"Insert into {tableName} ";
+		return this;
+	}
+
+	public QueryBuilder Values(List<string> keys) {
+		Result += $"({string.Join(", ", keys)}) Values (@{string.Join(", @", keys)})";
+		return this;
+	}
+
 	public QueryBuilder ADD_CONDITION(string paramName, string cmp) {
 		addStr($"WHERE {paramName} {cmp} @{paramName}");
 		return this;

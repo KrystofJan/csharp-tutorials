@@ -9,7 +9,7 @@ public class ModelInfo {
 		get =>  Type.ToString().Split(".").Last();
 	}
 
-	public object Instance { get; private set; }
+	public object Instance { get; set; }
 	public PropertyInfo[] Properties { get; set; }
 
 	public MethodInfo[] Methods { get; set; }
@@ -26,7 +26,8 @@ public class ModelInfo {
 	
 	public  ModelInfo(object model) {
 		Type type;
-		Instance = ModelInfoFactory.GetModel(model.GetType().ToString(), out type);
+		object tmp = ModelInfoFactory.GetModel(model.GetType().ToString(), out type);
+		Instance = model;
 		Type = type;
 		Properties = Type.GetProperties();
 		Methods = Type.GetMethods();

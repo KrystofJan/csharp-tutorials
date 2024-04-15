@@ -23,7 +23,7 @@ public class ModelInfoFactory {
 
 		return Activator.CreateInstance(type);
 	}
-
+	
 	public static List<ModelInfo> GetModels() {
 		string modelsLibPath = Path.GetFullPath("../../../../Models/bin/Debug/net8.0/Models.dll");
 		Assembly assembly = Assembly.LoadFile(modelsLibPath);
