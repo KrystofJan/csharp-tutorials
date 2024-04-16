@@ -36,24 +36,4 @@ public class ModelInfoFactory {
 		}
 		return modelInfos;
 	}
-	
-	public static Dictionary<PropertyInfo, Attribute> FindAttrsOnProperties(PropertyInfo[] propertyInfos) {
-		Dictionary<PropertyInfo, Attribute> result = new Dictionary<PropertyInfo, Attribute>();
-		foreach (var prop in propertyInfos) {
-			if (prop.GetCustomAttributes().ToArray().Length > 0) {
-				result[prop] = prop.GetCustomAttributes().ToArray()[0];
-			}
-		}
-
-		return result;
-	}
-	
-	public static PropertyInfo? GetModelsId(string modelName) {
-		ModelInfo mi = new ModelInfo(modelName);
-
-		IEnumerable<PropertyInfo> pi = mi.Properties
-			.Where(p => mi.AttrsOnProperties.ContainsKey(p) && mi.AttrsOnProperties[p] is IdentifierAttribute);
-		
-		return pi.FirstOrDefault();
-	}
 }

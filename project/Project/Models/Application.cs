@@ -6,17 +6,18 @@ public class Application {
 	[Identifier]
 	public int ApplicationId { get; set; }
 	
-	[ForeignObject]
+	[ForeignObject("PrimaryProgramId")]
 	public StudyProgram PrimaryProgram { get; set; }
 	
-	[ForeignObject]
+	[ForeignObject("SecondaryProgramId")]
 	public StudyProgram? SecondaryProgram { get; set; }
 	
-	[ForeignObject]
+	[ForeignObject("TertiaryProgramId")]
 	public StudyProgram? TertiaryProgram { get; set; }
 	
-	[ForeignObject]
+	[ForeignObject("StudentId")]
 	public Student Student { get; set; }
 	
+	[InsertIgnore]
 	public DateTime SubmissionDate { get; set; }
 }

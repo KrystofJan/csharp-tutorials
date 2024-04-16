@@ -8,7 +8,7 @@ internal class Program {
 	
 	static void Main(string[] args) {
 		object addr = Database<Application>.Select(1);
-		List<object> studyPrograms = Database<StudyProgram>.SelectAll();
+		object studyPrograms = Database<Application>.Select(1);
 
 		Address a = new Address();
 		a.AddressId = 2;
@@ -22,15 +22,32 @@ internal class Program {
 
 		Student student = new Student();
 		student.Address = a;
-		student.Email = "jan.zahradnik@profiq.com";
-		student.Login = "ZAH0089";
+		student.Email = "zah0089@vsb.cz";
+		student.Login = "MIN9932";
 		student.Phone = "+888 333 444 555";
-		student.FirstName = "Petr";
-		student.LastName = "Pokorny";
+		student.FirstName = "Lukas";
+		student.LastName = "Minovsky";
+		student.StudentId = 4;
 
-		bool worked = Database<Student>.Insert(student);
+		// Database<Student>.Delete(student);
+
+		StudyProgram primary = new StudyProgram();
+		primary.StudyProgramId = 1;
 		
+		StudyProgram secondary = new StudyProgram();
+		secondary.StudyProgramId = 2;
+		StudyProgram tetriary = new StudyProgram();
+		tetriary.StudyProgramId = 3;
 		
-		Console.WriteLine();
+		Application application = new Application();
+		application.Student = student;
+		application.SecondaryProgram = secondary;
+		application.PrimaryProgram = primary;
+		application.TertiaryProgram = tetriary;
+		
+		//
+		// bool worked = Database<Student>.Insert(student);
+		
+
 	}
 }

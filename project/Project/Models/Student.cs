@@ -9,7 +9,7 @@ public class Student {
 	public string FirstName { get; set; }
 	public string LastName { get; set; }
 	
-	[ForeignObject]
+	[ForeignObject("AddressId")]
 	public Address Address { get; set; }
 	public string Phone { get; set; }
 	public string Email { get; set; }

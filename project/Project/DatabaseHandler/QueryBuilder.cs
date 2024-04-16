@@ -10,7 +10,7 @@ public class QueryBuilder {
 		Result += $" {str}";
 	}
 	
-	public QueryBuilder SELECT(string tableName) {
+	public QueryBuilder Select(string tableName) {
 		Result = $"SELECT * FROM {tableName} ";
 		return this;
 	}
@@ -20,12 +20,17 @@ public class QueryBuilder {
 		return this;
 	}
 
+	public QueryBuilder Delete(string tableName) {
+		Result = $"Delete from {tableName} ";
+		return this;
+	}
+
 	public QueryBuilder Values(List<string> keys) {
 		Result += $"({string.Join(", ", keys)}) Values (@{string.Join(", @", keys)})";
 		return this;
 	}
 
-	public QueryBuilder ADD_CONDITION(string paramName, string cmp) {
+	public QueryBuilder Where(string paramName, string cmp) {
 		addStr($"WHERE {paramName} {cmp} @{paramName}");
 		return this;
 	}

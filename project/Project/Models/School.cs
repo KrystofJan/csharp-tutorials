@@ -9,6 +9,6 @@ public class School {
 	public string ContactPhone { get; set; }
 	public string ContactEmail { get; set; }
 	
-	[ForeignObject]
+	[ForeignObject("AddressId")]
 	public Address Address { get; set; }
 }

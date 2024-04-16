@@ -7,7 +7,7 @@ public class StudyProgram {
 	public int StudyProgramId { get; set; }
 	public string StudyProgramCode { get; set; }
 
-	[ForeignObject]
+	[ForeignObject("SchoolId")]
 	public School School { get; set; }
 	public string Summary { get; set; }
 	public int MaximumCapacity { get; set; }

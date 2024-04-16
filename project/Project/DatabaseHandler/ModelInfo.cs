@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using DatabaseAttrs;
 
 namespace DatabaseHandler;
@@ -13,7 +14,6 @@ public class ModelInfo {
 	public PropertyInfo[] Properties { get; set; }
 
 	public MethodInfo[] Methods { get; set; }
-	public Dictionary<PropertyInfo, Attribute> AttrsOnProperties = new Dictionary<PropertyInfo, Attribute>();
 	
 	public  ModelInfo(string modelName) {
 		Type type;
@@ -21,7 +21,6 @@ public class ModelInfo {
 		Type = type;
 		Properties = Type.GetProperties();
 		Methods = Type.GetMethods();
-		AttrsOnProperties = ModelInfoFactory.FindAttrsOnProperties(Properties);
 	}
 	
 	public  ModelInfo(object model) {
@@ -31,13 +30,15 @@ public class ModelInfo {
 		Type = type;
 		Properties = Type.GetProperties();
 		Methods = Type.GetMethods();
-		AttrsOnProperties = ModelInfoFactory.FindAttrsOnProperties(Properties);
 	}
 	public  ModelInfo(Type type) {
 		Instance = ModelInfoFactory.GetModel(type.ToString(), out type);
 		Type = type;
 		Properties = Type.GetProperties();
 		Methods = Type.GetMethods();
-		AttrsOnProperties = ModelInfoFactory.FindAttrsOnProperties(Properties);
+	}
+
+	public static bool ContainsAttr(Type attribute, PropertyInfo propertyInfo) {
+		return Attribute.IsDefined(propertyInfo, attribute);
 	}
 }
