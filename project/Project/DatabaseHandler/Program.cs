@@ -11,14 +11,15 @@ internal class Program {
 		object studyPrograms = Database<Application>.Select(1);
 
 		Address a = new Address();
-		a.AddressId = 2;
+		a.AddressId = 1;
 		a.City = "Coppenhagen";
 		a.Country = "Germany";
-		a.Province = "Bavorsko";
+		a.Province = "Lotyssko";
 		a.PostalCode = "73801";
 		a.BuildingNumber = "155";
 		a.ApartamentNumber = 7;
 		a.Street = "Dr. Malého";
+		
 
 		Student student = new Student();
 		student.Address = a;
@@ -27,8 +28,10 @@ internal class Program {
 		student.Phone = "+888 333 444 555";
 		student.FirstName = "Lukas";
 		student.LastName = "Minovsky";
-		student.StudentId = 4;
+		student.StudentId = 5;
+		Database<Student>.Update(student);
 
+		
 		// Database<Student>.Delete(student);
 
 		StudyProgram primary = new StudyProgram();

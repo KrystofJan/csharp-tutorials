@@ -25,6 +25,24 @@ public class QueryBuilder {
 		return this;
 	}
 
+	public QueryBuilder Update(string tableName) {
+		Result = $"Update {tableName} ";
+		return this;
+	}
+
+	public QueryBuilder Set(List<string> columns) {
+		Result += "SET ";
+		for (int i = 0; i < columns.Count; ++i) {
+			if (i + 1 >= columns.Count) {
+				Result += $"{columns[i]} = @{columns[i]} ";
+				continue;
+			}
+			Result += $"{columns[i]} = @{columns[i]}, ";
+		}
+		Result += " ";
+		return this;
+	}
+	
 	public QueryBuilder Values(List<string> keys) {
 		Result += $"({string.Join(", ", keys)}) Values (@{string.Join(", @", keys)})";
 		return this;

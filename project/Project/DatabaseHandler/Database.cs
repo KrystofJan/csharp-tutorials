@@ -69,7 +69,8 @@ public class Database<T> {
 							.GetMethod("Select", BindingFlags.Public | BindingFlags.Static);
 
 						model.Instance = selectMethod.Invoke(null, new object[] {value});
-						if (model.Instance != null && property.PropertyType.IsAssignableFrom(model.Instance.GetType())) {
+						if (model.Instance != null && 
+						    property.PropertyType.IsAssignableFrom(model.Instance.GetType())) {
 							property.SetValue(modelInfo.Instance, model.Instance);
 						}
 					}
@@ -213,7 +214,8 @@ public class Database<T> {
 		using SqliteConnection connection = new SqliteConnection(ConnectionString);
 		connection.Open();
 		ModelInfo modelInfo = new ModelInfo(model);
-
+		
+		PropertyInfo identifier = FindParams.GetModelsId(modelInfo.ModelName);
 		List<PropertyInfo> keys = FindParams.FindParamNames(modelInfo);
 		List<string> keyString = keys.Select(p => FindParams.GetParamName(p)).ToList();
 		Dictionary<PropertyInfo, string> propToKeyName = new Dictionary<PropertyInfo, string>();
@@ -223,7 +225,26 @@ public class Database<T> {
 
 		SqliteCommand cmd = connection.CreateCommand();
 
+		object idVal = Utils.GetPropValue(model, identifier.Name);
+		QueryBuilder qb = new QueryBuilder();
+		qb.Update(modelInfo.ModelName).Set(keyString).Where(identifier.Name, "=");
+		cmd.CommandText = qb.ToString();
+		cmd.Parameters.AddWithValue(identifier.Name, idVal);
+		foreach (var prop in keys) {
+			if (!ModelInfo.ContainsAttr(typeof(IdentifierAttribute), prop) 
+			    && !ModelInfo.ContainsAttr(typeof(ForeignObjectAttribute), prop)) {
+				object value = Utils.GetPropValue(model, prop.Name);
+				cmd.Parameters.AddWithValue(prop.Name, value );
+				continue;
+			}
+			
+			PropertyInfo? foreignIdInfo = FindParams.GetModelsId(prop.PropertyType.ToString());
+			object foreignObj = Utils.GetPropValue(model, prop.Name);
+			object foreignId = Utils.GetPropValue(foreignObj, foreignIdInfo.Name);
+			cmd.Parameters.AddWithValue(propToKeyName[prop], foreignId);
+		}
 
+		cmd.ExecuteNonQuery();
 	}
 	
 	private static bool ColumnExists(SqliteDataReader reader, string name) {
