@@ -1,5 +1,0 @@
-Headers are read-only, response has already started.   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpHeaders.ThrowHeadersReadOnlyException()
-   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseHeaders.Microsoft.AspNetCore.Http.IHeaderDictionary.set_ContentType(StringValues value)
-   at WebApplication1.FirstPageMiddleware.Invoke(HttpContext ctx) in C:\Users\zahry\CSharp2-tutorials\project\WebApplication1\WebApplication1\FirstPageMiddleware.cs:line 13
-   at WebApplication1.FileMiddleware.Invoke(HttpContext ctx) in C:\Users\zahry\CSharp2-tutorials\project\WebApplication1\WebApplication1\FileMiddleware.cs:line 26
-   at WebApplication1.ErrorMiddleware.Invoke(HttpContext ctx, ExceptionHandler handler) in C:\Users\zahry\CSharp2-tutorials\project\WebApplication1\WebApplication1\ErrorMiddleware.cs:line 13

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "18qqYpDFE5V8wRcaaYB6gdUvKVPg4WIY9e//TkTosQF7F2oTgUf/xntamxCIPtrKZquSKAkFTMea/R7JzGCfsw==",
+  "dgSpecHash": "N2oHe/fnme7w/biUcb+Kq712k6rdpAqPTM1NsifF9zTv+sJ1CHNQNbLFCAF110j28RTA8FDu8QZC6Yfh7MomTw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\Models\\Models.csproj",
+  "projectFilePath": "/home/zahry/school/CSharp/project/Project/Models/Models.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
