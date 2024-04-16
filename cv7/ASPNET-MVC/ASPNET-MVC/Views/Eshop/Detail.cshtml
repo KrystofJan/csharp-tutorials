@@ -1,0 +1,10 @@
+@{
+    Product product = ViewBag.Product;
+}
+<h1>@product.Name</h1>
+<p>@product.Description</p>
+<p>@product.Price Kč</p>
+
+<img src="@product.Photo" alt="fotka produktu">
+
+<a href="@Url.Action("AddToCart", new {productId = product.Id})">Přidat do košíku</a>

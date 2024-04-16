@@ -1,0 +1,11 @@
+<h1>Ishop</h1>
+
+<div class="ProductList">
+    @foreach(Product product in ViewBag.Products) {
+        <div class="ProductList-item">
+            <h2>@product.Name</h2>
+            <p>@product.Description</p>
+            <a href="@Url.Action("Detail", new {id = product.Id})">Detail</a>
+        </div>
+    }
+</div>

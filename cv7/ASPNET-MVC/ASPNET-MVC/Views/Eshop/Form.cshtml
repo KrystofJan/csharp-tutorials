@@ -1,0 +1,32 @@
+@using ASPNET_MVC.Forms
+@model CartForm
+@{
+    List<Product> products = ViewBag.Products;
+}
+
+<h1>Nakupni kosik</h1>
+<ul>
+    @foreach (Product product in products) {
+        <li>@product.Name</li>
+    }
+</ul>
+
+@using (Html.BeginForm()) {
+    <p>
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name)
+        @Html.ValidationMessageFor(x => x.Name)
+    </p>
+    <p>
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(x => x.Email)
+        @Html.ValidationMessageFor(x => x.Email);
+    </p>
+    <p>
+        @Html.LabelFor(x => x.Age)
+        @Html.TextBoxFor(x => x.Age)
+        @Html.ValidationMessageFor(x => x.Age);
+    </p>
+    
+    <button type="submit">Odeslat</button>
+}
