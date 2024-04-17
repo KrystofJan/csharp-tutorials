@@ -1,6 +1,7 @@
 using System.Reflection;
 using DatabaseAttrs;
 using DatabaseHandler.DatabaseUtility;
+using DatabaseHandler.DatabaseUtility.WhereCondition;
 using DatabaseHandler.ReflectionUtility;
 using Microsoft.Data.Sqlite;
 
@@ -10,19 +11,22 @@ public class Database<T> {
 	private static string ConnectionString {
 		get => "Data Source=database.sqlite";
 	}
-
-	public static object Select(int id) {
+	
+	public static object Select(Condition condition) {
 		ModelInfo modelInfo = new ModelInfo(typeof(T));
 		using SqliteConnection connection = new SqliteConnection(ConnectionString);
 		connection.Open();
 		using SqliteCommand cmd = connection.CreateCommand();
 		QueryBuilder qb = new QueryBuilder();
 		PropertyInfo identifier = FindParams.GetModelsId(modelInfo.ModelName);
-
-		qb.Select(modelInfo.ModelName).Where(identifier.Name, "=");
+		qb.Select(modelInfo.ModelName).Where(condition);
 		cmd.CommandText = qb.ToString();
-		cmd.Parameters.AddWithValue(identifier.Name, id);
-
+		
+		Dictionary<string, object> values = condition.GetValues();
+		foreach (var kvp in values) {
+			cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+		}
+		
 		using SqliteDataReader reader = cmd.ExecuteReader();
 
 		while (reader.Read()) {
@@ -70,7 +74,87 @@ public class Database<T> {
 					int value = reader.GetInt32(reader.GetOrdinal(typeName));
 					Type foreignKey = model.Type;
 					MethodInfo? selectMethod = typeof(Database<>).MakeGenericType(foreignKey)
-						.GetMethod("Select", BindingFlags.Public | BindingFlags.Static);
+						.GetMethod("SelectById", BindingFlags.Public | BindingFlags.Static);
+
+					if (selectMethod == null) {
+						throw new Exception("Select method does not exist");
+					}
+
+					model.Instance = selectMethod.Invoke(null, new object[] {value, null});
+					if (model.Instance != null &&
+					    property.PropertyType.IsAssignableFrom(model.Instance.GetType())) {
+						property.SetValue(modelInfo.Instance, model.Instance);
+					}
+				}
+			}
+		}
+
+		return modelInfo.Instance;
+	}
+
+	public static object SelectById(int id) {
+		ModelInfo modelInfo = new ModelInfo(typeof(T));
+		using SqliteConnection connection = new SqliteConnection(ConnectionString);
+		connection.Open();
+		using SqliteCommand cmd = connection.CreateCommand();
+		QueryBuilder qb = new QueryBuilder();
+		PropertyInfo identifier = FindParams.GetModelsId(modelInfo.ModelName);
+		qb.Select(modelInfo.ModelName);
+	
+		qb.Where(identifier.Name, "=");
+
+		cmd.CommandText = qb.ToString();
+
+		cmd.Parameters.AddWithValue(identifier.Name, id);
+		
+		using SqliteDataReader reader = cmd.ExecuteReader();
+
+		while (reader.Read()) {
+			foreach (var property in modelInfo.Properties) {
+				string typeName = property.Name;
+				bool isId = ColumnExists(reader, typeName + "Id")
+				            && !reader.IsDBNull(reader.GetOrdinal(property.Name + "Id"));
+				if (isId) {
+					typeName += "Id";
+				}
+
+				if (!ColumnExists(reader, typeName) || reader.IsDBNull(reader.GetOrdinal(typeName))) {
+					continue;
+				}
+
+				if (property.PropertyType == typeof(int)) {
+					int value = reader.GetInt32(reader.GetOrdinal(typeName));
+					property.SetValue(modelInfo.Instance, value);
+					continue;
+				}
+
+				if (property.PropertyType == typeof(string)) {
+					string value = reader.GetString(reader.GetOrdinal(typeName));
+					property.SetValue(modelInfo.Instance, value);
+					continue;
+				}
+
+				if (property.PropertyType == typeof(bool)) {
+					string value = reader.GetString(reader.GetOrdinal(typeName));
+					property.SetValue(modelInfo.Instance, value);
+					continue;
+				}
+
+				if (property.PropertyType == typeof(DateTime)) {
+					DateTime value = reader.GetDateTime(reader.GetOrdinal(typeName));
+					property.SetValue(modelInfo.Instance, value);
+					continue;
+				}
+
+				foreach (var model in ModelInfoList.ModelInfos) {
+					if (property.PropertyType != model.Type) {
+						continue;
+					}
+
+					int value = reader.GetInt32(reader.GetOrdinal(typeName));
+					Type foreignKey = model.Type;
+					MethodInfo? selectMethod = typeof(Database<>).MakeGenericType(foreignKey)
+						.GetMethod("SelectById", BindingFlags.Public | BindingFlags.Static);
 
 					if (selectMethod == null) {
 						throw new Exception("Select method does not exist");
@@ -88,7 +172,7 @@ public class Database<T> {
 		return modelInfo.Instance;
 	}
 
-	public static List<object> SelectAll() {
+	public static List<object> SelectAll(Condition? condition = null) {
 		List<object> modelInfos = new List<object>();
 		using SqliteConnection connection = new SqliteConnection(ConnectionString);
 		connection.Open();
@@ -97,7 +181,18 @@ public class Database<T> {
 		QueryBuilder qb = new QueryBuilder();
 
 		qb.Select(mInfo.ModelName);
+
+		if (condition != null) {
+			qb.Where(condition);
+		}
 		cmd.CommandText = qb.ToString();
+
+		if (condition != null) {
+			Dictionary<string, object> values = condition.GetValues();
+			foreach (var kvp in values) {
+				cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+			}
+		}
 
 		using SqliteDataReader reader = cmd.ExecuteReader();
 
@@ -148,13 +243,13 @@ public class Database<T> {
 					int value = reader.GetInt32(reader.GetOrdinal(typeName));
 					Type foreignKey = model.Type;
 					MethodInfo? selectMethod = typeof(Database<>).MakeGenericType(foreignKey)
-						.GetMethod("Select", BindingFlags.Public | BindingFlags.Static);
+						.GetMethod("SelectById", BindingFlags.Public | BindingFlags.Static);
 
 					if (selectMethod == null) {
 						throw new Exception("Select method does not exist");
 					}
 
-					model.Instance = selectMethod.Invoke(null, new object[] {value});
+					model.Instance = selectMethod.Invoke(null, new object[] {value, null});
 					if (model.Instance != null && property.PropertyType.IsAssignableFrom(model.Instance.GetType())) {
 						property.SetValue(modelInfo.Instance, model.Instance);
 					}

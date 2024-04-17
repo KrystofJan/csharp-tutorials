@@ -1,4 +1,6 @@
 ﻿using System;
+using DatabaseHandler.DatabaseUtility;
+using DatabaseHandler.DatabaseUtility.WhereCondition;
 using Models;
 
 namespace DatabaseHandler;
@@ -7,9 +9,9 @@ namespace DatabaseHandler;
 internal class Program {
 	
 	static void Main(string[] args) {
-		object addr = Database<Application>.Select(1);
-		object studyPrograms = Database<Application>.Select(1);
-
+		object addr = Database<Application>.SelectById(1);
+		object studyPrograms = Database<Application>.SelectById(1);
+		
 		Address a = new Address();
 		a.AddressId = 1;
 		a.City = "Coppenhagen";
@@ -19,7 +21,13 @@ internal class Program {
 		a.BuildingNumber = "155";
 		a.ApartamentNumber = 7;
 		a.Street = "Dr. Malého";
-		
+
+		Condition c = Condition
+			.AddParam("Country")
+			.Like("Germany")
+			.Build();
+
+		object addr2 = Database<Address>.Select(c);
 
 		Student student = new Student();
 		student.Address = a;
@@ -33,7 +41,7 @@ internal class Program {
 
 		StudyProgram primary = new StudyProgram();
 		primary.StudyProgramId = 1;
-		
+
 		StudyProgram secondary = new StudyProgram();
 		secondary.StudyProgramId = 2;
 		StudyProgram tetriary = new StudyProgram();

@@ -1,3 +1,5 @@
+using DatabaseHandler.DatabaseUtility.WhereCondition;
+
 namespace DatabaseHandler.DatabaseUtility;
 
 
@@ -46,11 +48,17 @@ public class QueryBuilder {
 		return this;
 	}
 
+	public QueryBuilder Where(Condition condition) {
+		addStr($"WHERE {condition.ToString()}");
+		return this;
+	}
+
+	
 	public QueryBuilder Where(string paramName, string cmp) {
 		addStr($"WHERE {paramName} {cmp} @{paramName}");
 		return this;
 	}
-
+	
 	public override string ToString() {
 		return Result;
 	}
