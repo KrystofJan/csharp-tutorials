@@ -1,6 +1,4 @@
-using System.Reflection;
-
-namespace DatabaseHandler;
+namespace DatabaseHandler.DatabaseUtility;
 
 
 public class QueryBuilder {

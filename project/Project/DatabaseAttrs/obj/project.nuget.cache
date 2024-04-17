@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DrulEcu+DJpGQYOMLhlVlJeDXxnSOMc1747eHx+h1nXsA/gnjjobp32MaZKrpbp+6sxcXfLDlaxdqyt4Y48gOg==",
+  "dgSpecHash": "Ae32Og/sXx145NOBjvpv9rq2mLX0fsfjyHtlYmfLGrtijZ5JP55oNLXc0eTkiNKpmlhG4aVpbHBn37abnfcQzA==",
   "success": true,
-  "projectFilePath": "/home/zahry/school/CSharp/project/Project/DatabaseAttrs/DatabaseAttrs.csproj",
+  "projectFilePath": "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\DatabaseAttrs\\DatabaseAttrs.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

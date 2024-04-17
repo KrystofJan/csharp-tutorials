@@ -1,7 +1,8 @@
 using System.Reflection;
 using DatabaseAttrs;
+using DatabaseHandler.ReflectionUtility;
 
-namespace DatabaseHandler;
+namespace DatabaseHandler.DatabaseUtility;
 
 public class FindParams {
 	public static List<PropertyInfo> FindParamNames(ModelInfo modelInfo) {

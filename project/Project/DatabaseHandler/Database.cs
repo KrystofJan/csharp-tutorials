@@ -1,5 +1,7 @@
 using System.Reflection;
 using DatabaseAttrs;
+using DatabaseHandler.DatabaseUtility;
+using DatabaseHandler.ReflectionUtility;
 using Microsoft.Data.Sqlite;
 
 namespace DatabaseHandler;
@@ -61,25 +63,31 @@ public class Database<T> {
 				}
 
 				foreach (var model in ModelInfoList.ModelInfos) {
-					if (property.PropertyType == model.Type) {
-						int value = reader.GetInt32(reader.GetOrdinal(typeName));
-						Type foreignKey = model.Type;
-						MethodInfo selectMethod = typeof(Database<>)
-							.MakeGenericType(foreignKey)
-							.GetMethod("Select", BindingFlags.Public | BindingFlags.Static);
+					if (property.PropertyType != model.Type) {
+						continue;
+					}
 
-						model.Instance = selectMethod.Invoke(null, new object[] {value});
-						if (model.Instance != null && 
-						    property.PropertyType.IsAssignableFrom(model.Instance.GetType())) {
-							property.SetValue(modelInfo.Instance, model.Instance);
-						}
+					int value = reader.GetInt32(reader.GetOrdinal(typeName));
+					Type foreignKey = model.Type;
+					MethodInfo? selectMethod = typeof(Database<>).MakeGenericType(foreignKey)
+						.GetMethod("Select", BindingFlags.Public | BindingFlags.Static);
+
+					if (selectMethod == null) {
+						throw new Exception("Select method does not exist");
+					}
+
+					model.Instance = selectMethod.Invoke(null, new object[] {value});
+					if (model.Instance != null &&
+					    property.PropertyType.IsAssignableFrom(model.Instance.GetType())) {
+						property.SetValue(modelInfo.Instance, model.Instance);
 					}
 				}
 			}
 		}
+
 		return modelInfo.Instance;
 	}
-	
+
 	public static List<object> SelectAll() {
 		List<object> modelInfos = new List<object>();
 		using SqliteConnection connection = new SqliteConnection(ConnectionString);
@@ -133,20 +141,26 @@ public class Database<T> {
 				}
 
 				foreach (var model in ModelInfoList.ModelInfos) {
-					if (property.PropertyType == model.Type) {
-						int value = reader.GetInt32(reader.GetOrdinal(typeName));
-						Type foreignKey = model.Type;
-						MethodInfo selectMethod = typeof(Database<>)
-							.MakeGenericType(foreignKey)
-							.GetMethod("Select", BindingFlags.Public | BindingFlags.Static);
+					if (property.PropertyType != model.Type) {
+						continue;
+					}
 
-						model.Instance = selectMethod.Invoke(null, new object[] {value});
-						if (model.Instance != null && property.PropertyType.IsAssignableFrom(model.Instance.GetType())) {
-							property.SetValue(modelInfo.Instance, model.Instance);
-						}
+					int value = reader.GetInt32(reader.GetOrdinal(typeName));
+					Type foreignKey = model.Type;
+					MethodInfo? selectMethod = typeof(Database<>).MakeGenericType(foreignKey)
+						.GetMethod("Select", BindingFlags.Public | BindingFlags.Static);
+
+					if (selectMethod == null) {
+						throw new Exception("Select method does not exist");
+					}
+
+					model.Instance = selectMethod.Invoke(null, new object[] {value});
+					if (model.Instance != null && property.PropertyType.IsAssignableFrom(model.Instance.GetType())) {
+						property.SetValue(modelInfo.Instance, model.Instance);
 					}
 				}
 			}
+
 			modelInfos.Add(modelInfo.Instance);
 		}
 
@@ -169,21 +183,21 @@ public class Database<T> {
 
 		QueryBuilder qb = new QueryBuilder();
 		qb.Insert(modelInfo.ModelName).Values(keyString);
-		
+
 		cmd.CommandText = qb.ToString();
-		
+
 		foreach (var prop in keys) {
-			if (!ModelInfo.ContainsAttr(typeof(IdentifierAttribute), prop) 
+			if (!ModelInfo.ContainsAttr(typeof(IdentifierAttribute), prop)
 			    && !ModelInfo.ContainsAttr(typeof(ForeignObjectAttribute), prop)) {
 				object value = Utils.GetPropValue(model, prop.Name);
-				cmd.Parameters.AddWithValue(prop.Name, value );
+				cmd.Parameters.AddWithValue(prop.Name, value);
 				continue;
 			}
-			
+
 			PropertyInfo? foreignIdInfo = FindParams.GetModelsId(prop.PropertyType.ToString());
 			object foreignObj = Utils.GetPropValue(model, prop.Name);
 			object foreignId = Utils.GetPropValue(foreignObj, foreignIdInfo.Name);
-			cmd.Parameters.AddWithValue(propToKeyName[prop], foreignId );
+			cmd.Parameters.AddWithValue(propToKeyName[prop], foreignId);
 		}
 
 		cmd.ExecuteNonQuery();
@@ -192,21 +206,21 @@ public class Database<T> {
 	public static void Delete(T model) {
 		using SqliteConnection connection = new SqliteConnection(ConnectionString);
 		connection.Open();
-		
+
 		ModelInfo modelInfo = new ModelInfo(model);
 		PropertyInfo id = FindParams.GetModelsId(modelInfo.ModelName);
 		using SqliteTransaction transaction = connection.BeginTransaction(System.Data.IsolationLevel.Serializable);
-		
+
 		QueryBuilder qb = new QueryBuilder();
 		qb.Delete(modelInfo.ModelName).Where(id.Name, "=");
-		
+
 		SqliteCommand cmd = connection.CreateCommand();
 		cmd.CommandText = qb.ToString();
 		object idVal = Utils.GetPropValue(model, id.Name);
 		cmd.Parameters.AddWithValue(id.Name, idVal);
 
 		cmd.ExecuteNonQuery();
-		
+
 		transaction.Commit();
 	}
 
@@ -214,7 +228,7 @@ public class Database<T> {
 		using SqliteConnection connection = new SqliteConnection(ConnectionString);
 		connection.Open();
 		ModelInfo modelInfo = new ModelInfo(model);
-		
+
 		PropertyInfo identifier = FindParams.GetModelsId(modelInfo.ModelName);
 		List<PropertyInfo> keys = FindParams.FindParamNames(modelInfo);
 		List<string> keyString = keys.Select(p => FindParams.GetParamName(p)).ToList();
@@ -231,13 +245,13 @@ public class Database<T> {
 		cmd.CommandText = qb.ToString();
 		cmd.Parameters.AddWithValue(identifier.Name, idVal);
 		foreach (var prop in keys) {
-			if (!ModelInfo.ContainsAttr(typeof(IdentifierAttribute), prop) 
+			if (!ModelInfo.ContainsAttr(typeof(IdentifierAttribute), prop)
 			    && !ModelInfo.ContainsAttr(typeof(ForeignObjectAttribute), prop)) {
 				object value = Utils.GetPropValue(model, prop.Name);
-				cmd.Parameters.AddWithValue(prop.Name, value );
+				cmd.Parameters.AddWithValue(prop.Name, value);
 				continue;
 			}
-			
+
 			PropertyInfo? foreignIdInfo = FindParams.GetModelsId(prop.PropertyType.ToString());
 			object foreignObj = Utils.GetPropValue(model, prop.Name);
 			object foreignId = Utils.GetPropValue(foreignObj, foreignIdInfo.Name);
@@ -246,7 +260,7 @@ public class Database<T> {
 
 		cmd.ExecuteNonQuery();
 	}
-	
+
 	private static bool ColumnExists(SqliteDataReader reader, string name) {
 		for (int i = 0; i < reader.FieldCount; i++) {
 			if (reader.GetName(i).Equals(name, StringComparison.OrdinalIgnoreCase)) {

@@ -1,8 +1,6 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using DatabaseAttrs;
 
-namespace DatabaseHandler;
+namespace DatabaseHandler.ReflectionUtility;
 
 public class ModelInfo {
 	public Type Type { get; private set; }

@@ -1,4 +1,4 @@
-namespace DatabaseHandler;
+namespace DatabaseHandler.DatabaseUtility;
 
 public static class TableNames {
 	public static readonly string ADDRESS = "Address";

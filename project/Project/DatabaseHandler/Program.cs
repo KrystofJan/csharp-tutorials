@@ -24,15 +24,12 @@ internal class Program {
 		Student student = new Student();
 		student.Address = a;
 		student.Email = "zah0089@vsb.cz";
-		student.Login = "MIN9932";
+		student.Login = "MIN0932";
 		student.Phone = "+888 333 444 555";
-		student.FirstName = "Lukas";
+		student.FirstName = "Pavel";
 		student.LastName = "Minovsky";
 		student.StudentId = 5;
 		Database<Student>.Update(student);
-
-		
-		// Database<Student>.Delete(student);
 
 		StudyProgram primary = new StudyProgram();
 		primary.StudyProgramId = 1;

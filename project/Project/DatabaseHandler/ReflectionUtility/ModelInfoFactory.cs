@@ -1,7 +1,6 @@
 using System.Reflection;
-using DatabaseAttrs;
 
-namespace DatabaseHandler;
+namespace DatabaseHandler.ReflectionUtility;
 
 public class ModelInfoFactory {
 	
@@ -10,8 +9,8 @@ public class ModelInfoFactory {
 		string modelsLibPath = Path.GetFullPath("../../../../Models/bin/Debug/net8.0/Models.dll");
 		Assembly assembly = Assembly.LoadFile(modelsLibPath);
 		Type[] types = assembly.GetTypes();
-		if (!types.Any(type => type.Name == modelName)) {
-			Console.WriteLine($"Model for this table does not exist. Table name {modelName}");	
+		if (types.Any(type => type.Name != modelName)) {
+			// Console.WriteLine($"Model for this table does not exist. Table name {modelName}");	
 		}
 
 		if (modelName.Split(".")[0] == "Models") {
