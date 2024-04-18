@@ -11,6 +11,7 @@ public class Student {
 	
 	[ForeignObject("AddressId")]
 	public Address Address { get; set; }
+	// public int AddressId { get; set; }
 	public string Phone { get; set; }
 	public string Email { get; set; }
 }

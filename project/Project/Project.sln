@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseHandler", "Database
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAttrs", "DatabaseAttrs\DatabaseAttrs.csproj", "{CA6D9028-0E27-4485-8298-C7583ADA0B76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyUtility", "AssemblyUtility\AssemblyUtility.csproj", "{36203424-9553-474E-9043-AC99FC7BB76F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{6A40E2D2-DB82-41C7-ABB6-3EC804A34AFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{CA6D9028-0E27-4485-8298-C7583ADA0B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA6D9028-0E27-4485-8298-C7583ADA0B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA6D9028-0E27-4485-8298-C7583ADA0B76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36203424-9553-474E-9043-AC99FC7BB76F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36203424-9553-474E-9043-AC99FC7BB76F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36203424-9553-474E-9043-AC99FC7BB76F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36203424-9553-474E-9043-AC99FC7BB76F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A40E2D2-DB82-41C7-ABB6-3EC804A34AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A40E2D2-DB82-41C7-ABB6-3EC804A34AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A40E2D2-DB82-41C7-ABB6-3EC804A34AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A40E2D2-DB82-41C7-ABB6-3EC804A34AFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

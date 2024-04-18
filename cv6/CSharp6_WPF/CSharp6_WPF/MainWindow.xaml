@@ -49,7 +49,7 @@
                                 
                                 <Button 
                                     Content="Upravit"
-                                    Click="EditCustomer"/>
+                                    Click="EditCustomer"/>  
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

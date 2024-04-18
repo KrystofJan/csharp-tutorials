@@ -8,4 +8,14 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DatabaseAttrs\DatabaseAttrs.csproj" />
+      <ProjectReference Include="..\DatabaseHandler\DatabaseHandler.csproj" />
+      <ProjectReference Include="..\Models\Models.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="obj\Debug\" />
+    </ItemGroup>
+
 </Project>

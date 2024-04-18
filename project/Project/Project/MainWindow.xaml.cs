@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Models;
+using Project.Services;
 
 namespace Project;
 
@@ -15,8 +17,11 @@ namespace Project;
 /// Interaction logic for MainWindow.xaml
 /// </summary>
 public partial class MainWindow : Window {
-	
+
+	public List<Student> Students { get; set; }
 	public MainWindow() {
+		Students = StudentService.FindAllStudents();
 		InitializeComponent();
+		DataContext = this;
 	}
 }

@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "HF8sPKNul8SbxhcUyKc+22pHz9OJGlrzCSjGuEmUkQ9Z+UGfYpIUAgUOXfca44M7nFQoSwPhOu2gw2+G83NDzQ==",
+  "dgSpecHash": "FzQOyE6teIusVefBf9Bc3tbw4L+FU/ea1OcqPBtUGDac9K1EBd3nPGDDeeYQDwPeoFkzxGAOk9fyGWuUTe2cvw==",
   "success": true,
   "projectFilePath": "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\Project\\Project.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\zahry\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.4\\microsoft.data.sqlite.core.8.0.4.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.1.8\\sqlitepclraw.bundle_green.2.1.8.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\sqlitepclraw.core\\2.1.8\\sqlitepclraw.core.2.1.8.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.8\\sqlitepclraw.lib.e_sqlite3.2.1.8.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.8\\sqlitepclraw.provider.e_sqlite3.2.1.8.nupkg.sha512",
+    "C:\\Users\\zahry\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+  ],
   "logs": []
 }

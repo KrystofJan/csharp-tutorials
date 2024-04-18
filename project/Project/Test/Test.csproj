@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -14,17 +15,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.4" />
-      <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\AssemblyUtility\AssemblyUtility.csproj" />
-      <ProjectReference Include="..\DatabaseAttrs\DatabaseAttrs.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="obj\Debug\" />
+      <ProjectReference Include="..\DatabaseHandler\DatabaseHandler.csproj" />
+      <ProjectReference Include="..\Models\Models.csproj" />
     </ItemGroup>
 
 </Project>
