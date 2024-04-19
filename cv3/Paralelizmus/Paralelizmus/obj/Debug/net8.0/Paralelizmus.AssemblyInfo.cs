@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Paralelizmus")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+618ba56069c7cf6307d9f3bc1ee862a55b5b61b9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d4084a492aa7d242d126561be82e396d338d654")]
 [assembly: System.Reflection.AssemblyProductAttribute("Paralelizmus")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Paralelizmus")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

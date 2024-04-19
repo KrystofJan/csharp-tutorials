@@ -5,8 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Height="624" Width="1024">
     <Grid>
-        <DataGrid x:Name="CustomerGrid" ItemsSource="{Binding Students}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32" />
+            <RowDefinition />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="textBox1" Height="16" Margin="10,8,10,8" VerticalAlignment="Top" KeyUp="TextBox1_OnKeyUp" />
+        <DataGrid 
+            x:Name="StudentGrid"
+            ItemsSource="{Binding Students}"
+            AlternatingRowBackground="DarkSeaGreen"
+            AlternationCount="2"
+            AutoGenerateColumns="False"
+            ColumnWidth="*" 
+            MinColumnWidth="32"
+            MinWidth="512"
+            Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Header="login"
+                    Binding="{Binding Login}"
+                    />
+                <DataGridTextColumn 
+                    Header="Jméno"
+                    Binding="{Binding FirstName}"
+                    />
+                <DataGridTextColumn 
+                    Header="Příjmení"
+                    Binding="{Binding LastName}"
+                    />
+                <DataGridTextColumn 
+                    Header="Telefon"
+                    Binding="{Binding Phone}"
+                    />
+                <DataGridTextColumn 
+                    Header="Email"
+                    Binding="{Binding Email}"
+                    />
+                <DataGridTextColumn 
+                    Header="Město"
+                    Binding="{Binding Address.City}"
+                    />
+                <DataGridTextColumn 
+                    Header="Ulice"
+                    Binding="{Binding Address.Street}"
+                    />
+                <DataGridTextColumn 
+                    Header="Číslo popisné"
+                    Binding="{Binding Address.BuildingNumber}"
+                    />
+                <DataGridTemplateColumn
+                    Header="Odstranit uzivatele">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button 
+                                    Content="Odstranit"
+                                    Click="Delete"/>                               
+                                <Button
+                                    Content="Upravit"
+                                    Click="Update"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button 
+            Grid.Row="2"
+            Margin="{Binding ButtonMargin}" 
+            Content="{Binding ButtonText}"
+            Click="AddStudent"
+            />
     </Grid>
 </Window>
