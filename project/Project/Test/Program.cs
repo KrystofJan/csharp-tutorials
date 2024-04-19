@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using DatabaseHandler;
+using DatabaseHandler.DatabaseUtility.WhereCondition;
 using Models;
 
 List<Student> students = Database<Student>.SelectAll();
@@ -8,6 +9,10 @@ List<Address> Addresses = Database<Address>.SelectAll();
 List<Application> Apps = Database<Application>.SelectAll();
 List<StudyProgram> StudyPrograms = Database<StudyProgram>.SelectAll();
 List<School> schools = Database<School>.SelectAll();
+
+Condition c = Condition.AddParam("City").Like("FM").Build();
+
+List<Address> ova = Database<Address>.Select(c);
 
 Console.WriteLine("Hello world! ");
 

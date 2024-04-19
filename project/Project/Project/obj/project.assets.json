@@ -162,16 +162,6 @@
           "lib/netcoreapp2.1/_._": {}
         }
       },
-      "AssemblyUtility/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/AssemblyUtility.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/AssemblyUtility.dll": {}
-        }
-      },
       "DatabaseAttrs/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -186,7 +176,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "AssemblyUtility": "1.0.0",
           "DatabaseAttrs": "1.0.0",
           "Microsoft.Data.Sqlite.Core": "8.0.4",
           "SQLitePCLRaw.bundle_green": "2.1.8"
@@ -343,11 +332,6 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "AssemblyUtility/1.0.0": {
-      "type": "project",
-      "path": "../AssemblyUtility/AssemblyUtility.csproj",
-      "msbuildProject": "../AssemblyUtility/AssemblyUtility.csproj"
     },
     "DatabaseAttrs/1.0.0": {
       "type": "project",

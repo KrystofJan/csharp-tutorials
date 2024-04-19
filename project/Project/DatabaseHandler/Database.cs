@@ -2,7 +2,6 @@ using System.Reflection;
 using DatabaseAttrs;
 using DatabaseHandler.DatabaseUtility;
 using DatabaseHandler.DatabaseUtility.WhereCondition;
-using DatabaseHandler.ReflectionUtility;
 using Microsoft.Data.Sqlite;
 using Microsoft.VisualBasic.CompilerServices;
 
@@ -102,8 +101,7 @@ public class Database<T> {
 
 		return Read(reader)[0];
 	}
-
-	// TODO maybe refactor
+	
 	public static List<T> SelectAll(Condition? condition = null) {
 		using SqliteConnection connection = new SqliteConnection(ConnectionString);
 		connection.Open();
@@ -147,8 +145,9 @@ public class Database<T> {
 		cmd.CommandText = qb.ToString();
 
 		foreach (var prop in keys) {
-			if (!ModelInfo.ContainsAttr(typeof(IdentifierAttribute), prop)
-			    && !ModelInfo.ContainsAttr(typeof(ForeignObjectAttribute), prop)) {
+			
+			if (!Attribute.IsDefined(prop, typeof(IdentifierAttribute))
+			        && !Attribute.IsDefined(prop, typeof(ForeignObjectAttribute))) {
 				object value = Utils.GetPropValue(model, prop.Name);
 				cmd.Parameters.AddWithValue(prop.Name, value);
 				continue;
@@ -208,8 +207,8 @@ public class Database<T> {
 		cmd.CommandText = qb.ToString();
 		cmd.Parameters.AddWithValue(identifier.Name, idVal);
 		foreach (var prop in keys) {
-			if (!ModelInfo.ContainsAttr(typeof(IdentifierAttribute), prop)
-			    && !ModelInfo.ContainsAttr(typeof(ForeignObjectAttribute), prop)) {
+			if (!Attribute.IsDefined(prop, typeof(IdentifierAttribute))
+			       && !Attribute.IsDefined(prop, typeof(ForeignObjectAttribute))) {
 				object value = Utils.GetPropValue(model, prop.Name);
 				cmd.Parameters.AddWithValue(prop.Name, value);
 				continue;
