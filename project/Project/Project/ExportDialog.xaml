@@ -1,0 +1,19 @@
+<Window x:Class="Project.ExportDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Project"
+        mc:Ignorable="d"
+        Title="ExportDialog" Height="128" Width="254">
+    
+    <StackPanel Orientation="Horizontal" Width="Auto">
+        <Button 
+            Content="Json"
+            Click="JsonOp"
+            />                               
+        <Button
+            Content="XML"
+            Click="XmlOp"/>  
+    </StackPanel>
+</Window>

@@ -21,7 +21,9 @@ namespace Project;
 public partial class MainWindow : Window {
 
 	public BindingList<Student> Students { get; set; }
+	public List<Student> ExportedStudents { get; set; }
 	public string ButtonText { get; set; }
+	
 	public Thickness ButtonMargin { get; set; } = new Thickness(
 		left: 10.0,
 		top: 0,
@@ -33,24 +35,20 @@ public partial class MainWindow : Window {
 
 	public MainWindow() {
 		Students = new BindingList<Student>();
-
-		// Thread fetchThread = new Thread(FetchData);
-		// fetchThread.Start();
-		FetchData();
+		ExportedStudents = new List<Student>();
+		Thread t = new Thread(FetchData);
+        t.Start();
 		ButtonText = "Přidej studenta";
 		InitializeComponent();
 		DataContext = this;
 	}
 
 	private void FetchData() {
-		// while (true) {
-			Students.Clear();
-			List<Student> std = StudentService.FindAllStudents();
-			foreach (var student in std) {
-				Students.Add(student);
-			}	
-			// Thread.Sleep(100);
-		// }
+		Students.Clear();
+		List<Student> std = StudentService.FindAllStudents();
+		foreach (var student in std) {
+			Students.Add(student);
+		}
 	}
 
 	private void AddStudent(object sender, RoutedEventArgs e) {
@@ -64,8 +62,7 @@ public partial class MainWindow : Window {
 		Students.Add(sd.Student);
 	}
 
-	private void TextBox1_OnKeyUp(object sender, KeyEventArgs e) {
-		Console.WriteLine(textBox1.Text);
+	private void Search(object sender, KeyEventArgs e) {
 		if (textBox1.Text == "") {
 			StudentGrid.ItemsSource = Students;
 			return;
@@ -90,10 +87,35 @@ public partial class MainWindow : Window {
 	private void Update(object sender, RoutedEventArgs e) {
 		Button btn = sender as Button;
 		Student std = btn.DataContext as Student;
-		// maybe lock here ????
 		StudentDialog sd = new StudentDialog(std, std.Address);
 		sd.ShowDialog();
 		StudentService.UpdateStudent(sd.Student);
 		AddressService.UpdateAddress(sd.Address);
+	}
+
+	private void Export(object sender, RoutedEventArgs e) {
+		ExportDialog exportSingle;
+		if (ExportedStudents.Count == 0) {
+			exportSingle = new ExportDialog(Students);
+		}
+		else if (ExportedStudents.Count > 1) {
+			exportSingle = new ExportDialog(ExportedStudents);
+		}
+		else {
+			exportSingle = new ExportDialog(ExportedStudents[0]);
+		}
+		exportSingle.ShowDialog();
+	}
+
+	private void AddExport(object sender, RoutedEventArgs e) {
+		CheckBox btn = sender as CheckBox;
+		Student std = btn.DataContext as Student;
+
+		if (ExportedStudents.Contains(std)) {
+			ExportedStudents.Remove(std);
+		}
+		else {
+			ExportedStudents.Add(std);
+		}
 	}
 }
