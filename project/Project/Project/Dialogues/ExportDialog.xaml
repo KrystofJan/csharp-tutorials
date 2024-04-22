@@ -1,9 +1,9 @@
-<Window x:Class="Project.ExportDialog"
+<Window x:Class="Project.Dialogues.ExportDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Project"
+        xmlns:local="clr-namespace:Project.Dialogues"
         mc:Ignorable="d"
         Title="ExportDialog" Height="128" Width="254">
     

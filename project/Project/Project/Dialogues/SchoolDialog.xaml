@@ -1,12 +1,12 @@
-<Window x:Class="Project.AddressDialogue"
+<Window x:Class="Project.Dialogues.SchoolDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Project"
+        xmlns:local="clr-namespace:Project.Dialogues"
         mc:Ignorable="d"
-        Title="AddressDialogue" Height="450" Width="800">
-    <StackPanel VerticalAlignment="Center">
+        Title="SchoolDialog" Height="450" Width="800">
+ <StackPanel VerticalAlignment="Center">
     <Grid Margin="0 0 0 16">
         <Grid.Resources>
             <Style TargetType="{x:Type TextBox}">
@@ -15,8 +15,35 @@
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Margin="8 0 ">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label   Grid.Column="0" Content="Název školy"/>
+                <TextBox Grid.Column="1" Text="{Binding School.SchoolName}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label   Grid.Column="0" Content="Kontaktní telefon"/>
+                <TextBox Grid.Column="1" Text="{Binding School.ContactPhone}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label   Grid.Column="0" Content="Kontaktní email"/>
+                <TextBox Grid.Column="1" Text="{Binding School.ContactEmail}"/>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="8 0 ">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="90px"/>

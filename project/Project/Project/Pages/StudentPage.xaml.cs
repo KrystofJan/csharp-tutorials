@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Models;
 using Project.Services;
+using Project.Dialogues;
 
 namespace Project;
 
@@ -20,8 +21,6 @@ public partial class StudentPage : Page {
 		right: 10.0,
 		bottom: 10
 	);
-	
-	private object lockObj = new object();
 
 	public StudentPage() {
 		Students = new BindingList<Student>();
@@ -53,15 +52,15 @@ public partial class StudentPage : Page {
 	}
 
 	private void Search(object sender, KeyEventArgs e) {
-		if (textBox1.Text == "") {
+		if (StudentSearchBox.Text == "") {
 			StudentGrid.ItemsSource = Students;
 			return;
 		}
 		var filtered = Students.Where(s => 
-			s.FirstName.ToLower().Contains(textBox1.Text.ToLower()) ||
-			s.LastName.ToLower().Contains(textBox1.Text.ToLower())||
-			s.Email.ToLower().Contains(textBox1.Text.ToLower()) ||
-			s.Login.ToLower().Contains(textBox1.Text.ToLower()));
+			s.FirstName.ToLower().Contains(StudentSearchBox.Text.ToLower()) ||
+			s.LastName.ToLower().Contains(StudentSearchBox.Text.ToLower())||
+			s.Email.ToLower().Contains(StudentSearchBox.Text.ToLower()) ||
+			s.Login.ToLower().Contains(StudentSearchBox.Text.ToLower()));
 
 		StudentGrid.ItemsSource = filtered;            
 	}

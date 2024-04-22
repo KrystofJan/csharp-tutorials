@@ -46,7 +46,7 @@
                     />
                 <DataGridTextColumn 
                     Header="Číslo popisné"
-                    Binding="{Binding Address.BuildingNumber}"
+                    Binding="{Binding BuildingNumber}"
                     />
                 <DataGridTextColumn 
                     Header="Číslo bytu"
@@ -74,11 +74,11 @@
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button 
-                Margin="{Binding ButtonMargin}" 
+                Margin="{Binding ButtonMargin }" 
                 Content="{Binding ButtonText}"
                 Click="AddAddress" />
             <Button
-                Margin="{Binding ButtonMargin}"
+                Margin="{Binding ButtonMargin }"
                 Content="Exportovat"
                 Click="Export" />
         </StackPanel>

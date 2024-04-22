@@ -11,5 +11,4 @@ public class School {
 	
 	[ForeignObject("AddressId")]
 	public Address Address { get; set; }
-	public int AddressId { get; set; }
 }

@@ -5,7 +5,7 @@ using System.Windows;
 using System.Xml.Serialization;
 using Microsoft.Win32;
 
-namespace Project;
+namespace Project.Dialogues;
 
 enum TypeOfExport {
 	EXPORT_SINGLE,

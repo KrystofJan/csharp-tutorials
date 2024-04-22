@@ -1,12 +1,13 @@
-<Page x:Class="Project.StudentPage"
+<Page x:Class="Project.SchoolPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Project"
       mc:Ignorable="d"
-      Title="StudentPage">
-    <Grid>
+      Title="AddressPage">
+	<Grid>
+		    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
@@ -15,11 +16,11 @@
             <RowDefinition />
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="StudentSearchBox" Height="16" Margin="10,8,10,8" VerticalAlignment="Top" KeyUp="Search" />
+        <TextBox x:Name="SchoolSearchBox" Height="16" Margin="10,8,10,8" VerticalAlignment="Top" KeyUp="Search" />
         <DataGrid 
-            x:Name="StudentGrid"
-            ItemsSource="{Binding Students}"
-            AlternatingRowBackground="DarkSeaGreen"
+            x:Name="SchoolGrid"
+            ItemsSource="{Binding Schools}"
+            AlternatingRowBackground="DarkSalmon"
             AlternationCount="2"
             AutoGenerateColumns="False"
             ColumnWidth="*" 
@@ -28,39 +29,31 @@
             Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn 
-                    Header="login"
-                    Binding="{Binding Login}"
+                    Header="Název školy"
+                    Binding="{Binding SchoolName}"
                     />
                 <DataGridTextColumn 
-                    Header="Jméno"
-                    Binding="{Binding FirstName}"
+                    Header="Kontaktní telefon"
+                    Binding="{Binding ContactPhone }"
                     />
                 <DataGridTextColumn 
-                    Header="Příjmení"
-                    Binding="{Binding LastName}"
-                    />
-                <DataGridTextColumn 
-                    Header="Telefon"
-                    Binding="{Binding Phone}"
-                    />
-                <DataGridTextColumn 
-                    Header="Email"
-                    Binding="{Binding Email}"
+                    Header="Kontaktní email"
+                    Binding="{Binding ContactEmail}"
                     />
                 <DataGridTextColumn 
                     Header="Město"
                     Binding="{Binding Address.City}"
-                    />
+                />
                 <DataGridTextColumn 
                     Header="Ulice"
                     Binding="{Binding Address.Street}"
-                    />
+                />
                 <DataGridTextColumn 
                     Header="Číslo popisné"
                     Binding="{Binding Address.BuildingNumber}"
-                    />
+                />
                 <DataGridTemplateColumn
-                    Header="Odstranit uzivatele">
+                    Header="Odstranit ">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -81,14 +74,14 @@
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button 
-                Margin="{Binding ButtonMargin}" 
+                Margin="{Binding ButtonMargin }" 
                 Content="{Binding ButtonText}"
-                Click="AddStudent" />
+                Click="AddAddress" />
             <Button
-                Margin="{Binding ButtonMargin}"
+                Margin="{Binding ButtonMargin }"
                 Content="Exportovat"
                 Click="Export" />
         </StackPanel>
-
     </Grid>
+	</Grid>
 </Page>
