@@ -4,6 +4,9 @@ using Models;
 namespace Project.Services;
 
 public class AddressService {
+	public static List<Address> FindAllAddresses() {
+		return Database<Address>.SelectAll();
+	}	
 	public static int CreateNewAddress(Address s) {
 		return Database<Address>.Insert(s);
 	}

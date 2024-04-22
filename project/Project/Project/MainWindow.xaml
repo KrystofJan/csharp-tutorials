@@ -6,89 +6,28 @@
         xmlns:local="clr-namespace:Project"
         mc:Ignorable="d"
         Height="624" Width="1260">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="32" />
-            <RowDefinition />
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
-        <TextBox x:Name="textBox1" Height="16" Margin="10,8,10,8" VerticalAlignment="Top" KeyUp="Search" />
-        <DataGrid 
-            x:Name="StudentGrid"
-            ItemsSource="{Binding Students}"
-            AlternatingRowBackground="DarkSeaGreen"
-            AlternationCount="2"
-            AutoGenerateColumns="False"
-            ColumnWidth="*" 
-            MinColumnWidth="32"
-            MinWidth="512"
-            Grid.Row="1">
-            <DataGrid.Columns>
-                <DataGridTextColumn 
-                    Header="login"
-                    Binding="{Binding Login}"
-                    />
-                <DataGridTextColumn 
-                    Header="Jméno"
-                    Binding="{Binding FirstName}"
-                    />
-                <DataGridTextColumn 
-                    Header="Příjmení"
-                    Binding="{Binding LastName}"
-                    />
-                <DataGridTextColumn 
-                    Header="Telefon"
-                    Binding="{Binding Phone}"
-                    />
-                <DataGridTextColumn 
-                    Header="Email"
-                    Binding="{Binding Email}"
-                    />
-                <DataGridTextColumn 
-                    Header="Město"
-                    Binding="{Binding Address.City}"
-                    />
-                <DataGridTextColumn 
-                    Header="Ulice"
-                    Binding="{Binding Address.Street}"
-                    />
-                <DataGridTextColumn 
-                    Header="Číslo popisné"
-                    Binding="{Binding Address.BuildingNumber}"
-                    />
-                <DataGridTemplateColumn
-                    Header="Odstranit uzivatele">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button 
-                                    Content="Odstranit"
-                                    Click="Delete"/>                               
-                                <Button
-                                    Content="Upravit"
-                                    Click="Update"/>        
-                                <CheckBox
-                                    Content="Export"
-                                    Click="AddExport" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button 
-                Margin="{Binding ButtonMargin}" 
-                Content="{Binding ButtonText}"
-                Click="AddStudent" />
-            <Button
-                Margin="{Binding ButtonMargin}"
-                Content="Exportovat"
-                Click="Export" />
-        </StackPanel>
-
-    </Grid>
+        <Grid>
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="64" />
+                        <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                        <Button
+                                MinWidth="64"
+                                Padding="16, 4"
+                                Content="Studenti"                                
+                                Margin="{Binding ButtonMargin}"
+                                Click="SwitchStudent"/>
+                        <Button
+                                MinWidth="64"
+                                Padding="16, 4"
+                                Margin="{Binding ButtonMargin}"
+                                Content="Adresy"
+                                Click="SwitchAddress"/>
+                </StackPanel>
+                <Frame Grid.Row="1" x:Name="Main" Margin="0, 0, 0, 0" NavigationUIVisibility="Hidden"/>                
+        </Grid>
 </Window>

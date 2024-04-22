@@ -89,5 +89,4 @@ public partial class ExportDialog : Window {
 			throw e;
 		}
 	}
-	
 }
