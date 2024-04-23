@@ -1,0 +1,79 @@
+<Window x:Class="Project.Dialogues.StudyProgramDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Project.Dialogues"
+        mc:Ignorable="d"
+        Title="StudyProgramDialog" Height="450" Width="800">
+<StackPanel VerticalAlignment="Center">
+    <Grid Margin="0 0 0 16">
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0,0,0,4" />
+            </Style>
+        </Grid.Resources>
+        <StackPanel Grid.Column="0" Margin="8 0 ">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60px"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label   Grid.Column="0" Content="Kód programu"/>
+                <TextBox Grid.Column="1" Text="{Binding StudyProgram.StudyProgramCode}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60px"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label   Grid.Column="0" Content="Maximální kapacita"/>
+                <TextBox Grid.Column="1" Text="{Binding StudyProgram.MaximumCapacity}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60px"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label   Grid.Column="0" Content="PocetLidi"/>
+                <TextBox Grid.Column="1" Text="{Binding StudyProgram.CurrentCapacity}"/>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60px"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label   Grid.Column="0" Content="Text"/>
+                <ComboBox Grid.Column="1" Name="SchoolsCombobox"
+                          ItemsSource="{Binding Schools}"
+                          DisplayMemberPath="{Binding SchoolName}"
+                          IsEditable="true"
+                          IsReadOnly="true"
+                          SelectionChanged="SelectSchool">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                                <TextBlock Text="{Binding SchoolName}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60px"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label   Grid.Column="0" Content="Summary"/>
+                <TextBox
+                    Grid.Column="1"
+                    Text="{Binding StudyProgram.Summary}"
+                    TextWrapping="Wrap"
+                    AcceptsReturn="True"
+                    VerticalScrollBarVisibility="Visible" />
+            </Grid>
+        </StackPanel>
+    </Grid>
+        <Button 
+        Content="Save"
+        Click="Save"/>
+    </StackPanel>
+</Window>

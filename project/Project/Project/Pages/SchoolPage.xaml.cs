@@ -42,9 +42,6 @@ public partial class SchoolPage : Page {
 	private void AddAddress(object sender, RoutedEventArgs e) {
 		SchoolDialog sd = new SchoolDialog();
 		sd.ShowDialog();
-		int addressId = AddressService.CreateNewAddress(sd.Address);
-		sd.Address.AddressId = addressId;
-		sd.School.Address = sd.Address;
 		int schoolId = SchoolService.CreateNewSchool(sd.School);
 		sd.School.SchoolId = schoolId;
 		Schools.Add(sd.School);
@@ -69,16 +66,14 @@ public partial class SchoolPage : Page {
 		Button btn = sender as Button;
 		School std = btn.DataContext as School;
 		SchoolService.DeleteSchool(std);
-		AddressService.DeleteAddress(std.Address);
 		Schools.Remove(std);
 	}
 
 	private void Update(object sender, RoutedEventArgs e) {
 		Button btn = sender as Button;
 		School std = btn.DataContext as School;
-		SchoolDialog sd = new SchoolDialog(std, std.Address);
+		SchoolDialog sd = new SchoolDialog(std);
 		sd.ShowDialog();
-		AddressService.UpdateAddress(std.Address);
 		SchoolService.UpdateSchool(std);
 	}
 

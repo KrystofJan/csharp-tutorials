@@ -31,6 +31,12 @@
                                 MinWidth="64"
                                 Padding="16, 4"
                                 Margin="{Binding ButtonMargin}"
+                                Content="Studijni programy"
+                                Click="SwitchStudyProgram" />
+                        <Button
+                                MinWidth="64"
+                                Padding="16, 4"
+                                Margin="{Binding ButtonMargin}"
                                 Content="Školy"
                                 Click="SwitchSchool" />
                 </StackPanel>

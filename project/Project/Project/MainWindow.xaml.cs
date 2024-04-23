@@ -9,9 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Models;
-using Project.Services;
-using Project.Utils;
+using Project.Pages;
 
 namespace Project;
 
@@ -23,6 +21,7 @@ public partial class MainWindow : Window {
 	private StudentPage StudentPage { get; set; }
 	private AddressPage AddressPage { get; set; }
 	private SchoolPage SchoolPage { get; set; }
+	public StudyProgramPage StudyProgramPage { get; set; }
 	
 	public Thickness ButtonMargin { get; set; } = new Thickness(
 		left: 16.0,
@@ -35,6 +34,7 @@ public partial class MainWindow : Window {
 		StudentPage = new StudentPage();
 		AddressPage = new AddressPage();
 		SchoolPage = new SchoolPage();
+		StudyProgramPage = new StudyProgramPage();
 		Main.Content = StudentPage;
 	}
 
@@ -48,5 +48,9 @@ public partial class MainWindow : Window {
 
 	private void SwitchSchool(object sender, RoutedEventArgs e) {
 		Main.Content = SchoolPage;
+	}
+
+	private void SwitchStudyProgram(object sender, RoutedEventArgs e) {
+		Main.Content = StudyProgramPage;
 	}
 }

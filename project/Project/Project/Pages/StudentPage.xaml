@@ -25,6 +25,7 @@
             ColumnWidth="*" 
             MinColumnWidth="32"
             MinWidth="512"
+            CanUserAddRows="False"
             Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn 

@@ -25,6 +25,7 @@
             AutoGenerateColumns="False"
             ColumnWidth="*" 
             MinColumnWidth="32"
+            CanUserAddRows="False"
             MinWidth="512"
             Grid.Row="1">
             <DataGrid.Columns>

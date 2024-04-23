@@ -6,11 +6,12 @@ namespace Project.Dialogues;
 public partial class SchoolDialog : Window {
 
 	public School School { get; set; }
-	public Address Address { get; set; }
 	
-	public SchoolDialog(School school = null, Address address = null) {
+	public SchoolDialog(School school = null) {
 		School = school ?? new School();
-		Address = address ?? new Address();
+		if (School.Address == null) {
+			School.Address = new Address();
+		}
 		InitializeComponent();
 		DataContext = this;
 	}

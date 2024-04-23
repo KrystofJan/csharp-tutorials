@@ -43,9 +43,6 @@ public partial class StudentPage : Page {
 	private void AddStudent(object sender, RoutedEventArgs e) {
 		StudentDialog sd = new StudentDialog();
 		sd.ShowDialog();
-		int addressId = AddressService.CreateNewAddress(sd.Address);
-		sd.Address.AddressId = addressId;
-		sd.Student.Address = sd.Address;
 		int studentId = StudentService.CreateNewStudent(sd.Student);
 		sd.Student.StudentId = studentId;
 		Students.Add(sd.Student);
@@ -69,17 +66,15 @@ public partial class StudentPage : Page {
 		Button btn = sender as Button;
 		Student std = btn.DataContext as Student;
 		StudentService.DeleteStudent(std);
-		AddressService.DeleteAddress(std.Address);
 		Students.Remove(std);
 	}
 
 	private void Update(object sender, RoutedEventArgs e) {
 		Button btn = sender as Button;
 		Student std = btn.DataContext as Student;
-		StudentDialog sd = new StudentDialog(std, std.Address);
+		StudentDialog sd = new StudentDialog(std);
 		sd.ShowDialog();
 		StudentService.UpdateStudent(sd.Student);
-		AddressService.UpdateAddress(sd.Address);
 	}
 
 	private void Export(object sender, RoutedEventArgs e) {
