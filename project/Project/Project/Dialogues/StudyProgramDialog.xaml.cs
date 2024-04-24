@@ -9,9 +9,9 @@ public partial class StudyProgramDialog : Window {
 	public bool isSaved { get; set; }
 	public StudyProgram StudyProgram { get; set; }
 	public List<School> Schools { get; set; }
-	public School SelectedSchool { get; set; }
 	
 	public StudyProgramDialog(StudyProgram std = null) {
+		InitializeComponent();
 		isSaved = false;
 		Schools = new List<School>();
 		List<School> tmp = SchoolService.FindAllSchools();
@@ -20,9 +20,12 @@ public partial class StudyProgramDialog : Window {
 		}
 
 		StudyProgram = std ?? new StudyProgram();
+
+		if (std != null) {
+			SchoolsCombobox.Text = std.School.ToString();
+		}
 		
 		DataContext = this;
-		InitializeComponent();
 	}
 
 	private void Save(object sender, RoutedEventArgs e) {

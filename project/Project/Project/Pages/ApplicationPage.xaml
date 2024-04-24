@@ -1,0 +1,82 @@
+<Page x:Class="Project.Pages.ApplicationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Project.Pages"
+      mc:Ignorable="d"
+      Title="Application">
+	<Grid>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="32" />
+				<RowDefinition />
+				<RowDefinition Height="30" />
+			</Grid.RowDefinitions>
+			<TextBox x:Name="ApplicationSearch" Height="16" Margin="10,8,10,8" VerticalAlignment="Top" KeyUp="Search" />
+			<DataGrid
+				x:Name="ApplicationGrid"
+				ItemsSource="{Binding Applications}"
+				AlternatingRowBackground="DarkKhaki"
+				AlternationCount="2"
+				AutoGenerateColumns="False"
+				ColumnWidth="*"
+				MinColumnWidth="32"
+				CanUserAddRows="False"
+				MinWidth="512"
+				Grid.Row="1">
+				<DataGrid.Columns>
+					<DataGridTextColumn
+						Header="Primarni program"
+						Binding="{Binding PrimaryProgram}" />
+					<DataGridTextColumn
+						Header="sekundarni program"
+						Binding="{Binding SecondaryProgram}" />
+					<DataGridTextColumn
+						Header="tercialni program"
+						Binding="{Binding TertiaryProgram}" />
+					<DataGridTextColumn
+						Header="Krestni jmeno zadajiciho"
+						Binding="{Binding  Student.FirstName}"/>
+					<DataGridTextColumn
+						Header="Prijmeni zadajiciho"
+						Binding="{Binding Student.LastName}" />
+					<DataGridTextColumn
+						Header="SubmissionDate"
+						Binding="{Binding SubmissionDate}" />
+					<DataGridTemplateColumn
+						Header="Odstranit uzivatele">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<Button
+										Content="Odstranit"
+										Click="Delete" />
+									<Button
+										Content="Upravit"
+										Click="Update" />
+									<CheckBox
+										Content="Export"
+										Click="AddExport" />
+								</StackPanel>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+			<StackPanel Grid.Row="2" Orientation="Horizontal">
+				<Button
+					Margin="{Binding ButtonMargin }"
+					Content="{Binding ButtonText}"
+					Click="AddApplication" />
+				<Button
+					Margin="{Binding ButtonMargin }"
+					Content="Exportovat"
+					Click="Export" />
+			</StackPanel>
+		</Grid>
+	</Grid>
+</Page>

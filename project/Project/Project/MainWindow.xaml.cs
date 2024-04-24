@@ -22,6 +22,7 @@ public partial class MainWindow : Window {
 	private AddressPage AddressPage { get; set; }
 	private SchoolPage SchoolPage { get; set; }
 	public StudyProgramPage StudyProgramPage { get; set; }
+	public ApplicationPage ApplicationPage { get; set; }
 	
 	public Thickness ButtonMargin { get; set; } = new Thickness(
 		left: 16.0,
@@ -35,6 +36,7 @@ public partial class MainWindow : Window {
 		AddressPage = new AddressPage();
 		SchoolPage = new SchoolPage();
 		StudyProgramPage = new StudyProgramPage();
+		ApplicationPage = new ApplicationPage();
 		Main.Content = StudentPage;
 	}
 
@@ -52,5 +54,9 @@ public partial class MainWindow : Window {
 
 	private void SwitchStudyProgram(object sender, RoutedEventArgs e) {
 		Main.Content = StudyProgramPage;
+	}
+
+	private void SwitchApplication(object sender, RoutedEventArgs e) {
+		Main.Content = ApplicationPage;
 	}
 }
