@@ -12,4 +12,7 @@ public class StudyProgram {
 	public string Summary { get; set; }
 	public int MaximumCapacity { get; set; }
 	public int CurrentCapacity { get; set; }
+	public override string ToString() {
+		return $"{StudyProgramCode} - {Summary}" ;
+	}
 }

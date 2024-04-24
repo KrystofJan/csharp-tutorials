@@ -11,4 +11,8 @@ public class School {
 	
 	[ForeignObject("AddressId")]
 	public Address Address { get; set; }
+
+	public override string ToString() {
+		return SchoolName;
+	}
 }

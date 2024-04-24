@@ -46,16 +46,9 @@
                 <Label   Grid.Column="0" Content="Text"/>
                 <ComboBox Grid.Column="1" Name="SchoolsCombobox"
                           ItemsSource="{Binding Schools}"
-                          DisplayMemberPath="{Binding SchoolName}"
                           IsEditable="true"
                           IsReadOnly="true"
-                          SelectionChanged="SelectSchool">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                                <TextBlock Text="{Binding SchoolName}"/>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                          SelectionChanged="SelectSchool" />
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>

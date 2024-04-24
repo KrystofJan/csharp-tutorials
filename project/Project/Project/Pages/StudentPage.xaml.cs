@@ -43,9 +43,11 @@ public partial class StudentPage : Page {
 	private void AddStudent(object sender, RoutedEventArgs e) {
 		StudentDialog sd = new StudentDialog();
 		sd.ShowDialog();
-		int studentId = StudentService.CreateNewStudent(sd.Student);
-		sd.Student.StudentId = studentId;
-		Students.Add(sd.Student);
+		if (sd.isSaved) {
+			int studentId = StudentService.CreateNewStudent(sd.Student);
+			sd.Student.StudentId = studentId;
+			Students.Add(sd.Student);
+		}
 	}
 
 	private void Search(object sender, KeyEventArgs e) {
@@ -74,7 +76,8 @@ public partial class StudentPage : Page {
 		Student std = btn.DataContext as Student;
 		StudentDialog sd = new StudentDialog(std);
 		sd.ShowDialog();
-		StudentService.UpdateStudent(sd.Student);
+		if(sd.isSaved)
+			StudentService.UpdateStudent(sd.Student);
 	}
 
 	private void Export(object sender, RoutedEventArgs e) {

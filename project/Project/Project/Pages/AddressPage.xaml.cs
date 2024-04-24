@@ -43,9 +43,11 @@ public partial class AddressPage : Page {
 	private void AddAddress(object sender, RoutedEventArgs e) {
 		AddressDialogue sd = new AddressDialogue();
 		sd.ShowDialog();
-		int addressId = AddressService.CreateNewAddress(sd.Address);
-		sd.Address.AddressId = addressId;
-		Addresses.Add(sd.Address);
+		if (sd.isSaved) {
+			int addressId = AddressService.CreateNewAddress(sd.Address);
+        	sd.Address.AddressId = addressId;
+        	Addresses.Add(sd.Address);
+		}
 	}
 
 	private void Search(object sender, KeyEventArgs e) {
@@ -74,7 +76,9 @@ public partial class AddressPage : Page {
 		Address std = btn.DataContext as Address;
 		AddressDialogue sd = new AddressDialogue(std);
 		sd.ShowDialog();
-		AddressService.UpdateAddress(std);
+		if (sd.isSaved) {
+			AddressService.UpdateAddress(std);
+		}	
 	}
 
 	private void Export(object sender, RoutedEventArgs e) {

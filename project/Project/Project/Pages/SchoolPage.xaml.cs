@@ -42,9 +42,11 @@ public partial class SchoolPage : Page {
 	private void AddAddress(object sender, RoutedEventArgs e) {
 		SchoolDialog sd = new SchoolDialog();
 		sd.ShowDialog();
-		int schoolId = SchoolService.CreateNewSchool(sd.School);
-		sd.School.SchoolId = schoolId;
-		Schools.Add(sd.School);
+		if (sd.isSaved) {
+			int schoolId = SchoolService.CreateNewSchool(sd.School);
+			sd.School.SchoolId = schoolId;
+			Schools.Add(sd.School);
+		}
 	}
 
 	private void Search(object sender, KeyEventArgs e) {
@@ -74,7 +76,7 @@ public partial class SchoolPage : Page {
 		School std = btn.DataContext as School;
 		SchoolDialog sd = new SchoolDialog(std);
 		sd.ShowDialog();
-		SchoolService.UpdateSchool(std);
+		if(sd.isSaved) SchoolService.UpdateSchool(std);
 	}
 
 	private void Export(object sender, RoutedEventArgs e) {

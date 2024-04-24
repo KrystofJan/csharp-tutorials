@@ -53,7 +53,8 @@ public partial class StudyProgramPage : Page {
 		StudyProgram std = btn.DataContext as StudyProgram;
 		StudyProgramDialog sd = new StudyProgramDialog(std);
 		sd.ShowDialog();
-		StudyProgramService.UpdateStudyProgram(sd.StudyProgram);
+		if(sd.isSaved)
+			StudyProgramService.UpdateStudyProgram(sd.StudyProgram);
 	}
 
 	private void AddExport(object sender, RoutedEventArgs e) {
@@ -71,9 +72,11 @@ public partial class StudyProgramPage : Page {
 	private void AddStudyProgram(object sender, RoutedEventArgs e) {
 		StudyProgramDialog sdp = new StudyProgramDialog();
 		sdp.ShowDialog();
-		int studyProgramId = StudyProgramService.CreateNewStudyProgram(sdp.StudyProgram);
-		sdp.StudyProgram.StudyProgramId = studyProgramId;
-		StudyPrograms.Add(sdp.StudyProgram);
+		if (sdp.isSaved) {
+			int studyProgramId = StudyProgramService.CreateNewStudyProgram(sdp.StudyProgram);
+			sdp.StudyProgram.StudyProgramId = studyProgramId;
+			StudyPrograms.Add(sdp.StudyProgram);
+		}
 	}
 
 	private void Export(object sender, RoutedEventArgs e) {
