@@ -13,4 +13,8 @@ public class Address {
 	public string BuildingNumber { get; set; }
 	public int  ApartamentNumber { get; set; }
 	public string PostalCode { get; set; }
+
+	public override string ToString() {
+		return $"{City} {PostalCode}, {Street} {BuildingNumber}";
+	}
 }

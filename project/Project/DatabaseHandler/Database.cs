@@ -121,7 +121,7 @@ public class Database<T> {
 				cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
 			}
 		}
-
+		
 		using SqliteDataReader reader = cmd.ExecuteReader();
 
 		return Read(reader);
