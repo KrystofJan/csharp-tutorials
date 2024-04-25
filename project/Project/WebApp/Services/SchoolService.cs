@@ -6,7 +6,7 @@ public class SchoolService {
 	public SchoolService() {
 	}
 
-	public List<Address> List() {
-		return Database<Address>.SelectAll();
+	public List<School> GetSchools() {
+		return Database<School>.SelectAll();
 	}
 }

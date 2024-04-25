@@ -9,9 +9,17 @@ namespace DatabaseHandler;
 
 public class Database<T> {
 	private static string ConnectionString {
-		get => "Data Source=../../../../database.sqlite";
+		get {
+			
+			Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);	
+			return $"Data Source={
+				Path.Join(
+					AppDomain.CurrentDomain.BaseDirectory,
+					"../../../../database.sqlite"
+			)}";
+		}
 	}
-	
+
 	// TODO: Add Error handeling. Return false on update and insert when error
 	private static List<T> Read(SqliteDataReader reader) {
 		List<T> result = new List<T>();
