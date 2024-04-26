@@ -49,6 +49,10 @@
                     Binding="{Binding Email}"
                     />
                 <DataGridTextColumn 
+                    Header="Datum narození"
+                    Binding="{Binding DateOfBirth}"
+                />
+                <DataGridTextColumn 
                     Header="Město"
                     Binding="{Binding Address.City}"
                     />

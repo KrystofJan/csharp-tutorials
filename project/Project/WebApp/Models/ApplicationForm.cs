@@ -1,6 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authorization;
 using Models;
+using WebApp.ValidationAttrs;
+
 namespace WebApp.Models;
 
 public class ApplicationForm {
@@ -19,7 +21,9 @@ public class ApplicationForm {
 	
 	[Required] 
 	[Display(Name = "Datum narození")]
-	[]
+	[AgeRequiredAttribure(14)]
+	[DataType(DataType.Date)]
+	[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
 	public DateTime DateOfBirth { get; set; }
 	
     [Required]
@@ -55,7 +59,7 @@ public class ApplicationForm {
 	public string BuildingNumber { get; set; }
 	
     [Display(Name = "Číslo bytu")]
-	public int  ApartamentNumber { get; set; }
+	public int?  ApartamentNumber { get; set; }
 	
     [Required]
     [Display(Name = "PSČ")]

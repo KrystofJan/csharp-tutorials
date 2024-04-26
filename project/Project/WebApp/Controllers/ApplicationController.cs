@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Services;
 using Models;
+using WebApp.Models;
+
 namespace WebApp.Controllers;
 
 
@@ -15,7 +17,16 @@ public class ApplicationController : Controller {
 		return View();
 	}
 	
+	
 	public IActionResult Form() {
+    	return View();
+    }
+	
+	[HttpPost]
+	public IActionResult Form(ApplicationForm form) {
+		if (ModelState.IsValid) {
+			Console.WriteLine("Is valid");
+		}
     	return View();
     }
 }

@@ -62,6 +62,12 @@
                 @Html.TextBoxFor(x => x.ApartamentNumber)
                 @Html.ValidationMessageFor(x => x.ApartamentNumber)
             </div>
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.DateOfBirth)
+                @Html.TextBoxFor(model => model.DateOfBirth, 
+                    new { type = "date" })
+                @Html.ValidationMessageFor(x => x.DateOfBirth)
+            </div>
         </div>
     <div class="FormCol"></div>
     <button type="submit">Podat přihlášku</button> 

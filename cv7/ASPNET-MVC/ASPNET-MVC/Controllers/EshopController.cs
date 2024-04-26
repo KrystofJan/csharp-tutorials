@@ -40,7 +40,8 @@ public class EshopController : Controller {
 	public IActionResult Form(CartForm form) {
 		ViewBag.Products = _cartService._Products;
 		if (ModelState.IsValid) {
-			// form je valid	
+			// form je valid
+			Console.WriteLine("asdasd");
 		}
 		
 		return View();

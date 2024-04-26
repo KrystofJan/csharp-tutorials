@@ -60,6 +60,14 @@
                 <Label   Grid.Column="0" Content="Email"/>
                 <TextBox Grid.Column="1" Text="{Binding Student.Email}"/>
             </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60px"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label   Grid.Column="0" Content="Datum narození"/>
+                <DatePicker Grid.Column="1" SelectedDate="{Binding Student.DateOfBirth}"/>
+            </Grid>
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="8 0 ">
             <Grid>
