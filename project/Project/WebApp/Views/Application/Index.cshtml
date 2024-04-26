@@ -3,10 +3,10 @@
 <h1>Hello world !</h1>
 
 <div class="SchoolList">
-    @foreach (Address school in ViewBag.Schools) {
+    @foreach (School school in ViewBag.Schools) {
         <div class="SchoolList-item">
-            <h2>@school.City</h2>
-            <p>@school.ToString()</p>
+            <h2>@school.SchoolName</h2>
+            <p>@school.Address.ToString()</p>
         </div> 
     }
 </div>

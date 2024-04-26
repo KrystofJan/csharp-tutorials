@@ -1,0 +1,69 @@
+@model ApplicationForm
+
+<h1>Přihláška</h1>
+<div class="Form">
+    @using (Html.BeginForm()) {
+        <div class="FormCol">
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.Login)
+                @Html.TextBoxFor(x => x.Login)
+                @Html.ValidationMessageFor(x => x.Login)
+            </div>
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.FirstName)
+                @Html.TextBoxFor(x => x.FirstName)
+                @Html.ValidationMessageFor(x => x.FirstName)
+            </div>
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.LastName)
+                @Html.TextBoxFor(x => x.LastName)
+                @Html.ValidationMessageFor(x => x.LastName)
+            </div>
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.Phone)
+                @Html.TextBoxFor(x => x.Phone)
+                @Html.ValidationMessageFor(x => x.Phone)
+            </div>
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.Email)
+                @Html.TextBoxFor(x => x.Email)
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+    </div>
+        <div class="FormCol">
+
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.Country)
+                @Html.TextBoxFor(x => x.Country)
+                @Html.ValidationMessageFor(x => x.Country)
+            </div>
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.Province)
+                @Html.TextBoxFor(x => x.Province)
+                @Html.ValidationMessageFor(x => x.Province)
+            </div>
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.Street)
+                @Html.TextBoxFor(x => x.Street)
+                @Html.ValidationMessageFor(x => x.Street)
+            </div>
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.City)
+                @Html.TextBoxFor(x => x.City)
+                @Html.ValidationMessageFor(x => x.City)
+            </div>
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.BuildingNumber)
+                @Html.TextBoxFor(x => x.BuildingNumber)
+                @Html.ValidationMessageFor(x => x.BuildingNumber)
+            </div>
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.ApartamentNumber)
+                @Html.TextBoxFor(x => x.ApartamentNumber)
+                @Html.ValidationMessageFor(x => x.ApartamentNumber)
+            </div>
+        </div>
+    <div class="FormCol"></div>
+    <button type="submit">Podat přihlášku</button> 
+    }
+</div>

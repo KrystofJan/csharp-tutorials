@@ -11,7 +11,11 @@ public class ApplicationController : Controller {
 	}
 
 	public IActionResult Index() {
-		ViewBag.Schools = _schoolService.List();
+		ViewBag.Schools = _schoolService.GetSchools();
 		return View();
 	}
+	
+	public IActionResult Form() {
+    	return View();
+    }
 }

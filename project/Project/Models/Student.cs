@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.JavaScript;
 using DatabaseAttrs;
 
 namespace Models;
@@ -14,7 +15,7 @@ public class Student {
 	// public int AddressId { get; set; }
 	public string Phone { get; set; }
 	public string Email { get; set; }
-
+	public DateTime DateOfBirth { get; set; }
 	public override string ToString() {
 		return $"{StudentId} - {FirstName} {LastName}";
 	}
