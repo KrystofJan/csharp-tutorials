@@ -29,7 +29,7 @@
                 @Html.TextBoxFor(x => x.Email)
                 @Html.ValidationMessageFor(x => x.Email)
             </div>
-    </div>
+        </div>
         <div class="FormCol">
 
             <div class="FormCol-item">
@@ -64,12 +64,60 @@
             </div>
             <div class="FormCol-item">
                 @Html.LabelFor(x => x.DateOfBirth)
-                @Html.TextBoxFor(model => model.DateOfBirth, 
+                @Html.TextBoxFor(model => model.DateOfBirth,
                     new { type = "date" })
                 @Html.ValidationMessageFor(x => x.DateOfBirth)
             </div>
         </div>
-    <div class="FormCol"></div>
-    <button type="submit">Podat přihlášku</button> 
+
+        <div class="FormCol SearchItem">
+            <div class="FormCol-item">
+                @Html.LabelFor(x => x.SchoolSearchTerm)
+                <p class="FormCol-itemExplainer">Můžete si vybrat až 3 studijní programy</p>
+                @Html.TextBoxFor(model => model.SchoolSearchTerm)
+                @Html.ValidationMessageFor(x => x.SchoolSearchTerm)
+            </div>
+            <ul class="SearchItem-results" data-attr="SearchItem-results">
+
+            </ul>
+        </div>
+        <button class="Form-submit" type="submit">Podat přihlášku</button>
     }
 </div>
+
+@section Scripts {
+    <script>
+        const successfulGet = (result) => {
+           const searchResultsEl = document.querySelector('[data-attr="SearchItem-results"]');
+            const results = [];
+           for (const res of result) {
+                const el = document.createElement('li');
+                el.classList.add('SearchItem-resultsItem');
+                el.innerHTML = `${res['studyProgramCode']} - ${res['summary']}, ${res['school']['schoolName']}`;
+                results.push(el);
+           }
+
+            for (const res of results) {
+                searchResultsEl.appendChild(res);
+            }
+        }
+        const failGet = (request,  status,  error) => {
+            console.log(status);
+        }
+
+
+        $('#SchoolSearchTerm').keyup(() => {
+           $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetStudyProgram", "StudyProgram")",
+                dataType: "json",
+                data: {
+                    value: `%${$('#SchoolSearchTerm').val()}%`
+                },
+                success: successfulGet,
+                error: failGet
+            });
+        });
+    
+    </script>
+}

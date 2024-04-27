@@ -11,4 +11,9 @@
       <ProjectReference Include="..\Models\Models.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Views\Application\From.cshtml.css" />
+      <None Include="wwwroot\css\form.css" />
+    </ItemGroup>
+
 </Project>

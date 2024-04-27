@@ -13,16 +13,13 @@ public class AgeRequiredAttribure : ValidationAttribute {
 		if (value is DateTime birthDate) {
 			DateTime today = DateTime.Today;
 			int age = today.Year - birthDate.Year;
-
 			if (birthDate.Date > today.AddYears(-age))
 				age--;
-
 			if (age >= _minimumAge) {
 				return ValidationResult.Success;
 			}
 			return new ValidationResult($"Minimální věk atributu \"{validationContext.DisplayName}\" je {_minimumAge} let");
 		}
-
 		return new ValidationResult($"{validationContext.DisplayName} musí být datum");
 	}
 }

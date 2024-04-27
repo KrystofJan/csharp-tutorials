@@ -65,6 +65,9 @@ public class ApplicationForm {
     [Display(Name = "PSČ")]
 	public string PostalCode { get; set; }
 	
+	[Display(Name="Najdi studijní program")]
+	public string SchoolSearchTerm { get; set; }
+
 	// Studijni programy
     [Required]
     [Display(Name = "Primární studijní program")]
