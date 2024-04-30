@@ -26,8 +26,9 @@ public partial class ApplicationPage : Page {
 		Applications = new BindingList<Application>();
     	ExportedApplications = new List<Application>();
     	ButtonText = "Přidej adresu";
-    	Thread t = new Thread(FetchData);
-    	t.Start();
+    	// Thread t = new Thread(FetchData);
+    	// t.Start();
+	    FetchData();
     	InitializeComponent();
     	DataContext = this;
     }

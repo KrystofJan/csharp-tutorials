@@ -25,8 +25,10 @@ public partial class AddressPage : Page {
 		Addresses = new BindingList<Address>();
 		ExportedAddresses = new List<Address>();
 		ButtonText = "Přidej adresu";
-		Thread t = new Thread(FetchData);
-		t.Start();
+		// TODO: Pridat vice vlaken do wpf -> JJ rikal, neco s dispatcherem
+		// Thread t = new Thread(FetchData);
+		// t.Start();
+		FetchData();
 		InitializeComponent();
 		DataContext = this;
 	}

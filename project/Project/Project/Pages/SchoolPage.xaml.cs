@@ -25,8 +25,9 @@ public partial class SchoolPage : Page {
 		Schools = new BindingList<School>();
 		ExportedSchools = new List<School>();
 		ButtonText = "Přidej školu";
-		Thread t = new Thread(FetchData);
-		t.Start();
+		// Thread t = new Thread(FetchData);
+		// t.Start();
+		FetchData();
 		InitializeComponent();
 		DataContext = this;
 	}

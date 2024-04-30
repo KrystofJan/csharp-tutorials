@@ -25,8 +25,9 @@ public partial class StudentPage : Page {
 	public StudentPage() {
 		Students = new BindingList<Student>();
 		ExportedStudents = new List<Student>();
-		Thread t = new Thread(FetchData);
-        t.Start();
+		// Thread t = new Thread(FetchData);
+        // t.Start();
+        FetchData();
 		ButtonText = "Přidej studenta";
 		InitializeComponent();
 		DataContext = this;
