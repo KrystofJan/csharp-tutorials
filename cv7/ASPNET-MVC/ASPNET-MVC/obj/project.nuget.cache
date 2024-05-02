@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tbftkXVDErPFmL6vv112hYJitV4hlag7603ydt4crvEEXkrSTp4TrIl+ENq1IKrtC51Fxc5rQ9YId/My3vEygA==",
+  "dgSpecHash": "OqW46e/+zZZwije9v4FBTHUH/i0IVLwT++Nv/yY8uk8z2c44qem1V3Ht5g2F1yidEiKsqk61I3X3VU7cJK0w0g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\zahry\\CSharp2-tutorials\\cv7\\ASPNET-MVC\\ASPNET-MVC\\ASPNET-MVC.csproj",
+  "projectFilePath": "/home/zahry/school/CSharp/cv7/ASPNET-MVC/ASPNET-MVC/ASPNET-MVC.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

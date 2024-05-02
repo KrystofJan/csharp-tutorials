@@ -10,8 +10,6 @@ namespace DatabaseHandler;
 public class Database<T> {
 	private static string ConnectionString {
 		get {
-			
-			Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);	
 			return $"Data Source={
 				Path.Join(
 					AppDomain.CurrentDomain.BaseDirectory,

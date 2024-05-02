@@ -16,4 +16,11 @@
       <None Include="wwwroot\css\form.css" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Update="styles\form.css">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

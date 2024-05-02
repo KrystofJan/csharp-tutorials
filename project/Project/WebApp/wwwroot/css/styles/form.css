@@ -1,0 +1,149 @@
+.Form {
+    padding: 1rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.Form form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+}
+
+.Form-submit {
+    grid-column: 1/-1;
+    width: fit-content;
+    margin: auto;
+}
+
+.FormCol {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.FormCol-item {
+    display: grid;
+    align-content: center;
+    min-height: 5rem;
+}
+
+.FormCol-itemExplainer {
+    font-size: 12px;
+}
+
+.SearchItem {
+    grid-column: 1/-1;
+}
+
+.field-validation-error {
+    color: darkred;
+}
+
+.FoundSchoolPrograms {
+    grid-column: -1/1;
+}
+.FoundSchoolPrograms-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.FoundSchoolPrograms-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    background: white;
+    border-radius: .25rem;
+    padding: 1rem;
+    box-shadow: 0 0 .5rem .5rem lightgray;
+}
+
+.item-closer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: .25rem;
+    background: red;
+    color: white;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+.item-closer:hover{
+    background: darkred;
+}
+.SearchItem {
+    position: relative;
+}
+.SearchItem-results {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    padding: 1rem;
+    box-shadow: 0 0 .5rem .5rem lightgray;
+}
+
+.item-closer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: .25rem;
+    background: red;
+    color: white;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+.item-closer:hover{
+    background: darkred;
+}
+.SearchItem {
+    position: relative;
+    z-index: 9;
+}
+.no-content {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+}
+.SearchItem-results:not(.no-content) {
+    visibility: visible;
+    list-style: none;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    padding: 1rem;
+    max-height: 15rem;
+}
+
+.SearchItem-resultsItem {
+    background: white;
+    border-bottom: 1px solid lightgray;
+    cursor: pointer;
+}
+
+.SearchItem-resultsItem:hover {
+    background: lightgray;
+    border-bottom: 1px solid gray;
+}

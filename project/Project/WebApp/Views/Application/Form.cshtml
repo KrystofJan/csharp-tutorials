@@ -1,3 +1,4 @@
+@using Models
 @model ApplicationForm
 
 <h1>Přihláška</h1>
@@ -31,7 +32,6 @@
             </div>
         </div>
         <div class="FormCol">
-
             <div class="FormCol-item">
                 @Html.LabelFor(x => x.Country)
                 @Html.TextBoxFor(x => x.Country)
@@ -77,9 +77,41 @@
                 @Html.TextBoxFor(model => model.SchoolSearchTerm)
                 @Html.ValidationMessageFor(x => x.SchoolSearchTerm)
             </div>
-            <ul class="SearchItem-results" data-attr="SearchItem-results">
+            <ul class="SearchItem-results no-content" data-attr="SearchItem-results">
 
             </ul>
+        </div>
+
+        <div class="FoundSchoolPrograms mainPrograms">
+            <div class="FoundSchoolPrograms-wrapper mainPrograms">
+                @foreach (StudyProgram sp in ViewBag.StudyPrograms) {
+                    <div class="FoundSchoolPrograms-item">
+                        <div class="FoundSchoolPrograms-itemSection ">
+                            <span class="FoundSchoolPrograms-label">Kód oboru: </span>
+                            <span class="FoundSchoolPrograms-content">@sp.StudyProgramCode</span>
+                        </div>
+
+                        <div class="FoundSchoolPrograms-itemSection ">
+                            <span class="FoundSchoolPrograms-label">Název oboru: </span>
+                            <span class="FoundSchoolPrograms-content">@sp.Summary</span>
+                        </div>
+
+                        <div class="FoundSchoolPrograms-itemSection ">
+                            <span class="FoundSchoolPrograms-label">Název školy: </span>
+                            <span class="FoundSchoolPrograms-content">@sp.School.SchoolName</span>
+                        </div>
+
+                        <div class="FoundSchoolPrograms-itemSection ">
+                            <span class="FoundSchoolPrograms-label">Kapacita (současná / max.): </span>
+                            <span class="FoundSchoolPrograms-content">@sp.CurrentCapacity / @sp.MaximumCapacity</span>
+                        </div>
+
+                        <div onclick="removeToSelected(@sp.StudyProgramId)" class="FoundSchoolPrograms-itemSection item-closer" study-prog-id="@sp.StudyProgramId">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 384 512" fill="none"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
         <button class="Form-submit" type="submit">Podat přihlášku</button>
     }
@@ -87,27 +119,101 @@
 
 @section Scripts {
     <script>
+        //$('.FoundSchoolPrograms-item').each((index) => {
+          //  $(this).on('click', () => {
+            //    const id = this.getAttribute('study-prog-id');
+              //  addToSelected(id);
+            //})
+        //});
+        let mouseIsOver = false;
+        
+        const removeToSelected = (studyProgram) => {
+        console.log(studyProgram);
+            $.ajax({
+                type: "Post",
+                url: "@Url.Action("RemoveFromList", "Application")",
+                dataType: "json",
+                data: {
+                    studyProgramId: parseInt(studyProgram)
+                },
+                success: successAdd,
+                error: failAdd
+            });
+        }
+
+        const successAdd = (result) => {
+            $('.FoundSchoolPrograms').load(location.href + ' .FoundSchoolPrograms-wrapper');
+            console.log(result);
+        } 
+        
+        const failAdd = (request,  status,  error) => {
+            console.log(status);
+            console.log(error);
+            console.log(request);
+        }
+        
+        const addToSelected = (id) => {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddToList", "Application")",
+                dataType: "json",
+                data: {
+                    id: parseInt(id) 
+                },
+                success: successAdd,
+                error: failAdd
+            });
+        }
+        
         const successfulGet = (result) => {
+        
            const searchResultsEl = document.querySelector('[data-attr="SearchItem-results"]');
-            const results = [];
+           searchResultsEl.innerHTML = '';
+          
+           const results = [];
+            console.log(result)
+
+
            for (const res of result) {
                 const el = document.createElement('li');
                 el.classList.add('SearchItem-resultsItem');
+                el.setAttribute('study-prog-id', res['studyProgramId']);
                 el.innerHTML = `${res['studyProgramCode']} - ${res['summary']}, ${res['school']['schoolName']}`;
+                el.addEventListener('click', () => {
+                   const id = res['studyProgramId'];
+                   addToSelected(id);
+                }) 
                 results.push(el);
            }
 
             for (const res of results) {
                 searchResultsEl.appendChild(res);
             }
+            
+            if (results.length <= 0) {
+                const el = document.createElement('li');
+                el.classList.add('SearchItem-resultsItem');
+                el.classList.add('not-found');
+                el.innerHTML = 'Nanašli jsme shodující kód, či název oboru nebo školy'
+                searchResultsEl.appendChild(el);
+            } 
+            searchResultsEl.classList.remove('no-content')
         }
+        
         const failGet = (request,  status,  error) => {
+            const searchResultsEl = document.querySelector('[data-attr="SearchItem-results"]');
+            searchResultsEl.innerHTML = '';
+            
+            const el = document.createElement('li');
+            el.classList.add('SearchItem-resultsItem');
+            el.classList.add('has-error');
+            el.innerHTML = "Nastala chyba v hledání výsledků";
+            searchResultsEl.appendChild(el);
+            
             console.log(status);
         }
-
-
-        $('#SchoolSearchTerm').keyup(() => {
-           $.ajax({
+        const findByKey = () => {
+            $.ajax({
                 type: "GET",
                 url: "@Url.Action("GetStudyProgram", "StudyProgram")",
                 dataType: "json",
@@ -117,7 +223,30 @@
                 success: successfulGet,
                 error: failGet
             });
+        }
+        $('#SchoolSearchTerm').keyup(() => {
+            findByKey();
         });
-    
+
+        $('#SchoolSearchTerm').focus( () => {
+            findByKey();
+        });
+
+        $('.SearchItem-results').mouseleave(() => {
+            mouseIsOver = false;
+        });
+        $('.SearchItem-results').mouseover(() => {
+            mouseIsOver = true;
+        });
+        
+        $('body').click(() => {
+            if (!mouseIsOver) {
+                const searchResultsEl = document.querySelector('[data-attr="SearchItem-results"]');
+                const term = document.querySelector('#SchoolSearchTerm');
+                if (document.activeElement !== term) {
+                    searchResultsEl.classList.add('no-content');
+                }
+            }
+        })
     </script>
 }
