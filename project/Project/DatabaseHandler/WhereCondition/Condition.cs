@@ -11,7 +11,7 @@ public enum OperatorType {
 	LTEQ
 }
 
-public class Condition {
+public class Condition : IDisposable{
 	public ValueStorage ValueStorage = ValueStorage.getInstance();
 	public string Param { get; set; }
 	public object? ParamValue { get; set; }
@@ -46,15 +46,19 @@ public class Condition {
 			}	
 		}
 	}
+	public ConditionConnection? ConditionConnection { get; set; }
 	
 	public static ConditionBuilder AddParam(string param) {
 		return new ConditionBuilder(new Condition { Param = param });
 	}
-	public ConditionConnection? ConditionConnection { get; set; }
 	
 	public override string ToString() {
 		string? cond = ConditionConnection == null ? null : ConditionConnection.ToString();
 		return $"{Param} {_operator} @{Param} {cond ?? ""}";
+	}
+
+	public void Dispose() {
+		ValueStorage.Clear();
 	}
 
 	public Dictionary<string, object> GetValues() {
@@ -62,7 +66,7 @@ public class Condition {
 		foreach (var kvp in ValueStorage.ConditionValues) {
 			tmp[kvp.Key] = kvp.Value;
 		}
-		ValueStorage.Clear();
+	
 		return tmp;
 	}
 }
