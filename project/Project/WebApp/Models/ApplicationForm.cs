@@ -69,13 +69,8 @@ public class ApplicationForm {
 	public string SchoolSearchTerm { get; set; }
 
 	// Studijni programy
-    [Required]
-    [Display(Name = "Primární studijní program")]
+	[Required]
 	public int PrimaryProgramId { get; set; }
-	
-    [Display(Name = "Druhý studijí program")]
-	public int StudyProgramId { get; set; }	
-	
-    [Display(Name = "Třetí studijní program")]
-	public int TertiaryProgramId { get; set; }
+	public int? SecondaryProgramId { get; set; }
+	public int? TertiaryProgramId { get; set; }
 }
