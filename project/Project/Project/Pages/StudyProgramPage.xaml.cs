@@ -14,21 +14,19 @@ public partial class StudyProgramPage : Page {
 
 	public StudyProgramPage() {
 		StudyPrograms = new BindingList<StudyProgram>();
-		Thread t = new Thread(FetchData);
-		t.Start();
-		// FetchData();
+		// Thread t = new Thread(FetchData);
+		// t.Start();
+		FetchData();
 		InitializeComponent();
 		DataContext = this;
 	}
 
 	private void FetchData() {
-		Dispatcher.Invoke(() => {
-			StudyPrograms.Clear();
-			List<StudyProgram> std = StudyProgramService.FindAllStudyPrograms();
-			foreach (var program in std) {
-				StudyPrograms.Add(program);
-			}
-		});
+		StudyPrograms.Clear();
+		List<StudyProgram> std = StudyProgramService.FindAllStudyPrograms();
+		foreach (var program in std) {
+			StudyPrograms.Add(program);
+		}
 	}
 
 	private void Search(object sender, KeyEventArgs e) {
@@ -36,13 +34,12 @@ public partial class StudyProgramPage : Page {
 			StudyProgramGrid.ItemsSource = StudyPrograms;
 			return;
 		}
-
-		var filtered = StudyPrograms.Where(s =>
+		var filtered = StudyPrograms.Where(s => 
 			s.School.SchoolName.ToLower().Contains(StudyProgramSearchBox.Text.ToLower()) ||
-			s.StudyProgramCode.ToLower().Contains(StudyProgramSearchBox.Text.ToLower()) ||
+			s.StudyProgramCode.ToLower().Contains(StudyProgramSearchBox.Text.ToLower())||
 			s.Summary.ToLower().Contains(StudyProgramSearchBox.Text.ToLower()));
 
-		StudyProgramGrid.ItemsSource = filtered;
+		StudyProgramGrid.ItemsSource = filtered;     
 	}
 
 	private void Delete(object sender, RoutedEventArgs e) {
@@ -57,7 +54,7 @@ public partial class StudyProgramPage : Page {
 		StudyProgram std = btn.DataContext as StudyProgram;
 		StudyProgramDialog sd = new StudyProgramDialog(std);
 		sd.ShowDialog();
-		if (sd.isSaved)
+		if(sd.isSaved)
 			StudyProgramService.UpdateStudyProgram(sd.StudyProgram);
 	}
 
@@ -94,7 +91,6 @@ public partial class StudyProgramPage : Page {
 		else {
 			exportSingle = new ExportDialog(ExportedStudyPrograms[0]);
 		}
-
 		exportSingle.ShowDialog();
 	}
 }

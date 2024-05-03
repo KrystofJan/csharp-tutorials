@@ -18,11 +18,11 @@ namespace Project;
 /// </summary>
 public partial class MainWindow : Window {
 
-	// private StudentPage StudentPage { get; set; }
-	// private AddressPage AddressPage { get; set; }
-	// private SchoolPage SchoolPage { get; set; }
-	// public StudyProgramPage StudyProgramPage { get; set; }
-	// public ApplicationPage ApplicationPage { get; set; }
+	private StudentPage StudentPage { get; set; }
+	private AddressPage AddressPage { get; set; }
+	private SchoolPage SchoolPage { get; set; }
+	public StudyProgramPage StudyProgramPage { get; set; }
+	public ApplicationPage ApplicationPage { get; set; }
 	
 	public Thickness ButtonMargin { get; set; } = new Thickness(
 		left: 16.0,
@@ -32,31 +32,31 @@ public partial class MainWindow : Window {
 	);
 	public MainWindow() {
 		InitializeComponent();
-		// StudentPage = new StudentPage();
-		// AddressPage = new AddressPage();
-		// SchoolPage = new SchoolPage();
-		// StudyProgramPage = new StudyProgramPage();
-		// ApplicationPage = new ApplicationPage();
-		Main.Content = new StudentPage();
+		StudentPage = new StudentPage();
+		AddressPage = new AddressPage();
+		SchoolPage = new SchoolPage();
+		StudyProgramPage = new StudyProgramPage();
+		ApplicationPage = new ApplicationPage();
+		Main.Content = StudentPage;
 	}
 
 	private void SwitchStudent(object sender, RoutedEventArgs e) {
-		Main.Content = new StudentPage();
+		Main.Content = StudentPage;
 	}
 
 	private void SwitchAddress(object sender, RoutedEventArgs e) {
-		Main.Content = new AddressPage();
+		Main.Content = AddressPage;
 	}
 
 	private void SwitchSchool(object sender, RoutedEventArgs e) {
-		Main.Content = new SchoolPage();
+		Main.Content = SchoolPage;
 	}
 
 	private void SwitchStudyProgram(object sender, RoutedEventArgs e) {
-		Main.Content = new StudyProgramPage();
+		Main.Content = StudyProgramPage;
 	}
 
 	private void SwitchApplication(object sender, RoutedEventArgs e) {
-		Main.Content = new ApplicationPage();
+		Main.Content = ApplicationPage;
 	}
 }
