@@ -2,8 +2,9 @@
 @using Models
 @model ApplicationForm
 
-<h1>Přihláška</h1>
-<div class="Form">
+<h2>Přihláška</h2>
+@if (ViewBag.ShowForm) {
+    <div class="Form">
     @using (Html.BeginForm()) {
         <div class="FormCol">
             <div class="FormCol-item">
@@ -140,7 +141,10 @@
         <button class="Form-submit" type="submit">Podat přihlášku</button>
     }
 </div>
-
+}
+else {
+    <div class="Success">Váše přihláška byla vytvořena pod ID: @ViewBag.ApplicationId</div>
+}
 @section Scripts {
     <script>
         //$('.FoundSchoolPrograms-item').each((index) => {

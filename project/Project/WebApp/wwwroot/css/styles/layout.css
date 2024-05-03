@@ -1,0 +1,54 @@
+.Header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 32px;
+    background: #055160;
+    color: #fff;
+}
+
+.HeaderNav {
+    display: flex;
+    gap: 2rem;
+
+    align-items: center;
+}
+
+.HeaderLogo {
+    display: flex;
+    gap: 1.5rem;
+    color: white;
+    text-decoration: none;
+    align-items: center;
+    transition: .25s ease-in-out;
+}
+.HeaderLogo:hover{
+    color: white;
+    opacity: .7;
+}
+
+.HeaderLogo h1 {
+    margin: unset;
+    font-size: 1.5rem !important;
+}
+
+.HeaderNav a {
+    text-decoration: none;
+    color: white;
+    position:relative;
+}
+
+.HeaderNav a::before{
+    content: '';
+    background: #fff;
+    position:absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    transition: .25s ease-in-out;
+}
+
+.HeaderNav a:hover::before{
+    width: 100%;
+}

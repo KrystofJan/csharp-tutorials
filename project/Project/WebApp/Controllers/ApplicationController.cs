@@ -7,11 +7,10 @@ using WebApp.Models;
 
 namespace WebApp.Controllers;
 
-
 public class ApplicationController : Controller {
 	private readonly SchoolService _schoolService;
 	private readonly StudyProgramService _studyProgramService;
-	
+
 	public ApplicationController(SchoolService schoolService, StudyProgramService studyProgramService) {
 		_schoolService = schoolService;
 		_studyProgramService = studyProgramService;
@@ -24,13 +23,15 @@ public class ApplicationController : Controller {
 
 	public IActionResult Form() {
 		ViewBag.StudyPrograms = _studyProgramService.SelectedProgramsSet;
-    	return View();
-    }
-	
+		ViewBag.ShowForm = true;
+		return View();
+	}
+
 	[HttpPost]
 	public IActionResult Form(ApplicationForm form) {
 		if (!ModelState.IsValid) {
-			return View();	
+			ViewBag.ShowForm = true;
+			return View();
 		}
 		Console.WriteLine("We good");
 		Address a = new Address() {
@@ -57,27 +58,33 @@ public class ApplicationController : Controller {
 		s.StudentId = studentId;
 		Application application = new Application {
 			Student = s,
-			PrimaryProgram = new StudyProgram{StudyProgramId = form.PrimaryProgramId}
+			PrimaryProgram = new StudyProgram { StudyProgramId = form.PrimaryProgramId }
 		};
-		
+
 		if (form.SecondaryProgramId != null) {
 			application.SecondaryProgram = new StudyProgram { StudyProgramId = (int)form.SecondaryProgramId };
 		}
-		
+
 		if (form.TertiaryProgramId != null) {
 			application.TertiaryProgram = new StudyProgram { StudyProgramId = (int)form.TertiaryProgramId };
 		}
 
 		int appId = Database<Application>.Insert(application);
-		Console.WriteLine(appId);	
-    	return View();
-    }
+		application.ApplicationId = appId;
+		Console.WriteLine(appId);
+		ViewBag.ShowForm = false;
+		ViewBag.ApplicationId = appId;
+		ViewBag.CreatedAddress = a;
+		ViewBag.CreatedStudent = s;
+		ViewBag.CreatedApplication = application;
+		return View();
+	}
 
 	public override void OnActionExecuting(ActionExecutingContext context) {
 		ViewBag.StudyPrograms = _studyProgramService.SelectedProgramsSet;
 		base.OnActionExecuting(context);
 	}
-	
+
 	[HttpPost]
 	public IActionResult AddToList(int id) {
 		StudyProgram sp = _studyProgramService.GetSpecificProgramById(id);
