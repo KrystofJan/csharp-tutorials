@@ -9,35 +9,36 @@ using Project.Dialogues;
 namespace Project;
 
 public partial class SchoolPage : Page {
-
 	public BindingList<School> Schools { get; set; }
 	public List<School> ExportedSchools { get; set; }
 	public string ButtonText { get; set; }
-	
+
 	public Thickness ButtonMargin { get; set; } = new Thickness(
 		left: 10.0,
 		top: 0,
 		right: 10.0,
 		bottom: 10
 	);
-	
+
 	public SchoolPage() {
 		Schools = new BindingList<School>();
 		ExportedSchools = new List<School>();
 		ButtonText = "Přidej školu";
-		// Thread t = new Thread(FetchData);
-		// t.Start();
-		FetchData();
+		Thread t = new Thread(FetchData);
+		t.Start();
+		// FetchData();
 		InitializeComponent();
 		DataContext = this;
 	}
 
 	private void FetchData() {
-		Schools.Clear();
-		List<School> std = SchoolService.FindAllSchools();
-		foreach (var school in std) {
-			Schools.Add(school);
-		}
+		Dispatcher.Invoke(() => {
+			Schools.Clear();
+			List<School> std = SchoolService.FindAllSchools();
+			foreach (var school in std) {
+				Schools.Add(school);
+			}
+		});
 	}
 
 	private void AddAddress(object sender, RoutedEventArgs e) {
@@ -55,14 +56,15 @@ public partial class SchoolPage : Page {
 			SchoolGrid.ItemsSource = Schools;
 			return;
 		}
-		var filtered = Schools.Where(s => 
+
+		var filtered = Schools.Where(s =>
 			s.Address.City.ToLower().Contains(SchoolSearchBox.Text.ToLower()) ||
-			s.Address.Street.ToLower().Contains(SchoolSearchBox.Text.ToLower())||
+			s.Address.Street.ToLower().Contains(SchoolSearchBox.Text.ToLower()) ||
 			s.Address.Country.ToLower().Contains(SchoolSearchBox.Text.ToLower()) ||
 			s.Address.Country.ToLower().Contains(SchoolSearchBox.Text.ToLower()) ||
 			s.SchoolName.ToLower().Contains(SchoolSearchBox.Text.ToLower()));
 
-		SchoolGrid.ItemsSource = filtered;            
+		SchoolGrid.ItemsSource = filtered;
 	}
 
 	private void Delete(object sender, RoutedEventArgs e) {
@@ -77,7 +79,7 @@ public partial class SchoolPage : Page {
 		School std = btn.DataContext as School;
 		SchoolDialog sd = new SchoolDialog(std);
 		sd.ShowDialog();
-		if(sd.isSaved) SchoolService.UpdateSchool(std);
+		if (sd.isSaved) SchoolService.UpdateSchool(std);
 	}
 
 	private void Export(object sender, RoutedEventArgs e) {
@@ -91,6 +93,7 @@ public partial class SchoolPage : Page {
 		else {
 			exportSingle = new ExportDialog(ExportedSchools[0]);
 		}
+
 		exportSingle.ShowDialog();
 	}
 

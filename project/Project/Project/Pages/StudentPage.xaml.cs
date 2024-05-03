@@ -9,12 +9,10 @@ using Project.Dialogues;
 namespace Project;
 
 public partial class StudentPage : Page {
-	
-	
 	public BindingList<Student> Students { get; set; }
 	public List<Student> ExportedStudents { get; set; }
 	public string ButtonText { get; set; }
-	
+
 	public Thickness ButtonMargin { get; set; } = new Thickness(
 		left: 10.0,
 		top: 0,
@@ -25,20 +23,25 @@ public partial class StudentPage : Page {
 	public StudentPage() {
 		Students = new BindingList<Student>();
 		ExportedStudents = new List<Student>();
-		// Thread t = new Thread(FetchData);
-        // t.Start();
-        FetchData();
+		Thread t = new Thread(FetchData);
+		t.Start();
+		// FetchData();
 		ButtonText = "Přidej studenta";
 		InitializeComponent();
 		DataContext = this;
 	}
 
 	private void FetchData() {
-		Students.Clear();
-		List<Student> std = StudentService.FindAllStudents();
-		foreach (var student in std) {
-			Students.Add(student);
-		}
+//		while (true) {
+			Dispatcher.Invoke(() => {
+				Students.Clear();
+				List<Student> std = StudentService.FindAllStudents();
+				foreach (var student in std) {
+					Students.Add(student);
+				}
+			});
+//			Thread.Sleep(1000);
+//		}
 	}
 
 	private void AddStudent(object sender, RoutedEventArgs e) {
@@ -56,13 +59,14 @@ public partial class StudentPage : Page {
 			StudentGrid.ItemsSource = Students;
 			return;
 		}
-		var filtered = Students.Where(s => 
+
+		var filtered = Students.Where(s =>
 			s.FirstName.ToLower().Contains(StudentSearchBox.Text.ToLower()) ||
-			s.LastName.ToLower().Contains(StudentSearchBox.Text.ToLower())||
+			s.LastName.ToLower().Contains(StudentSearchBox.Text.ToLower()) ||
 			s.Email.ToLower().Contains(StudentSearchBox.Text.ToLower()) ||
 			s.Login.ToLower().Contains(StudentSearchBox.Text.ToLower()));
 
-		StudentGrid.ItemsSource = filtered;            
+		StudentGrid.ItemsSource = filtered;
 	}
 
 	private void Delete(object sender, RoutedEventArgs e) {
@@ -77,7 +81,7 @@ public partial class StudentPage : Page {
 		Student std = btn.DataContext as Student;
 		StudentDialog sd = new StudentDialog(std);
 		sd.ShowDialog();
-		if(sd.isSaved)
+		if (sd.isSaved)
 			StudentService.UpdateStudent(sd.Student);
 	}
 
@@ -92,6 +96,7 @@ public partial class StudentPage : Page {
 		else {
 			exportSingle = new ExportDialog(ExportedStudents[0]);
 		}
+
 		exportSingle.ShowDialog();
 	}
 
