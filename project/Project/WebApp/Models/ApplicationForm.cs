@@ -70,6 +70,7 @@ public class ApplicationForm {
 
 	// Studijni programy
 	[Required]
+	[Range(1, int.MaxValue)]
 	public int PrimaryProgramId { get; set; }
 	public int? SecondaryProgramId { get; set; }
 	public int? TertiaryProgramId { get; set; }

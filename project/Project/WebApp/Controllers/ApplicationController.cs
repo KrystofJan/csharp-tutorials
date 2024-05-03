@@ -34,7 +34,7 @@ public class ApplicationController : Controller {
 		}
 		Console.WriteLine("We good");
 		Address a = new Address() {
-			ApartamentNumber = form.ApartamentNumber ?? 0,
+			ApartamentNumber = form.ApartamentNumber,
 			BuildingNumber = form.BuildingNumber,
 			Country = form.Country,
 			City = form.City,

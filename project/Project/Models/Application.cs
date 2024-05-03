@@ -12,10 +12,12 @@ public class Application{
 	public StudyProgram PrimaryProgram { get; set; }
 
 	[ForeignObject("SecondaryProgramId")]
+	[Optional]
 	public StudyProgram? SecondaryProgram { get; set; }	
 	// public int? SecondaryProgramId { get; set; }
 
 	[ForeignObject("TertiaryProgramId")]
+	[Optional]
 	public StudyProgram? TertiaryProgram { get; set; }
 	// public int? TertiaryProgramId { get; set; }
 

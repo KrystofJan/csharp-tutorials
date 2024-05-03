@@ -1,3 +1,4 @@
+using System.Data;
 using System.Reflection;
 using DatabaseAttrs;
 using DatabaseHandler.DatabaseUtility;
@@ -28,6 +29,12 @@ public class Database<T> {
 
 				if (property.PropertyType == typeof(int)) {
 					int value = reader.GetInt32(reader.GetOrdinal(typeName));
+					property.SetValue(targetModel, value);
+					continue;
+				}
+				
+				if (property.PropertyType == typeof(int?)) {
+					int? value = (int?)reader.GetInt32(reader.GetOrdinal(typeName));
 					property.SetValue(targetModel, value);
 					continue;
 				}
@@ -138,7 +145,7 @@ public class Database<T> {
 		connection.Open();
 
 		List<PropertyInfo> keys = FindParams.FindParamNames(typeof(T));
-		List<string> keyString = keys.Select(p => FindParams.GetParamName(p)).ToList();
+		List<PropertyInfo> paramsToBeRemoved = new List<PropertyInfo>();
 		Dictionary<PropertyInfo, string> propToKeyName = new Dictionary<PropertyInfo, string>();
 		foreach (var key in keys) {
 			propToKeyName[key] = FindParams.GetParamName(key);
@@ -146,25 +153,33 @@ public class Database<T> {
 
 		SqliteCommand cmd = connection.CreateCommand();
 
-		QueryBuilder qb = new QueryBuilder();
-		qb.Insert(typeof(T).Name).Values(keyString);
-
-		cmd.CommandText = qb.ToString();
-
 		foreach (var prop in keys) {
-			
 			if (!Attribute.IsDefined(prop, typeof(IdentifierAttribute))
 			        && !Attribute.IsDefined(prop, typeof(ForeignObjectAttribute))) {
-				object value = Utils.GetPropValue(model, prop.Name);
+				object? value = Utils.GetPropValue(model, prop.Name);
+				if (value == null && Attribute.IsDefined(prop, typeof(OptionalAttribute))) {
+					paramsToBeRemoved.Add(prop);	
+					continue;
+				}
 				cmd.Parameters.AddWithValue(prop.Name, value);
 				continue;
 			}
 
 			PropertyInfo? foreignIdInfo = FindParams.GetModelsId(prop.PropertyType);
-			object foreignObj = Utils.GetPropValue(model, prop.Name);
-			object foreignId = Utils.GetPropValue(foreignObj, foreignIdInfo.Name);
+			object? foreignObj = Utils.GetPropValue(model, prop.Name);
+			if (foreignObj == null && Attribute.IsDefined(prop, typeof(OptionalAttribute))) {
+				paramsToBeRemoved.Add(prop);	
+				continue;
+			}
+			object? foreignId = Utils.GetPropValue(foreignObj, foreignIdInfo.Name);
 			cmd.Parameters.AddWithValue(propToKeyName[prop], foreignId);
 		}
+			
+		List<string> keyString = keys.Except(paramsToBeRemoved).Select(p => FindParams.GetParamName(p)).ToList();
+		QueryBuilder qb = new QueryBuilder();
+		qb.Insert(typeof(T).Name).Values(keyString);
+
+		cmd.CommandText = qb.ToString();
 
 		cmd.ExecuteNonQuery();
 
