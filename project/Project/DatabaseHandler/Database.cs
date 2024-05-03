@@ -1,4 +1,3 @@
-using System.Data;
 using System.Reflection;
 using DatabaseAttrs;
 using DatabaseHandler.DatabaseUtility;
@@ -15,7 +14,7 @@ public class Database<T> {
 				Path.Join(
 					AppDomain.CurrentDomain.BaseDirectory,
 					"../../../../database.sqlite"
-			)}";
+				)}";
 		}
 	}
 
@@ -27,14 +26,20 @@ public class Database<T> {
 			foreach (var property in typeof(T).GetProperties()) {
 				string typeName = property.Name;
 
+
 				if (property.PropertyType == typeof(int)) {
 					int value = reader.GetInt32(reader.GetOrdinal(typeName));
 					property.SetValue(targetModel, value);
 					continue;
 				}
-				
+
 				if (property.PropertyType == typeof(int?)) {
-					int? value = (int?)reader.GetInt32(reader.GetOrdinal(typeName));
+					if (reader[reader.GetOrdinal(typeName)] is DBNull) {
+						property.SetValue(targetModel, null);
+						continue;
+					}
+
+					int? value = (int?) reader.GetInt32(reader.GetOrdinal(typeName));
 					property.SetValue(targetModel, value);
 					continue;
 				}
@@ -57,6 +62,12 @@ public class Database<T> {
 					continue;
 				}
 
+				if (reader[reader.GetOrdinal(typeName + "Id")] is DBNull &&
+				    Attribute.IsDefined(property, typeof(OptionalAttribute))) {
+					property.SetValue(targetModel, null);
+					continue;
+				}
+
 				int idValue = reader.GetInt32(reader.GetOrdinal(typeName + "Id"));
 				MethodInfo? selectMethod = typeof(Database<>).MakeGenericType(property.PropertyType)
 					.GetMethod("SelectById", BindingFlags.Public | BindingFlags.Static);
@@ -64,19 +75,20 @@ public class Database<T> {
 				if (selectMethod == null) {
 					throw new Exception("Select method does not exist");
 				}
-					
+
 				dynamic foreignObj = selectMethod.Invoke(null, new object[] {idValue});
 				if (foreignObj != null &&
 				    property.PropertyType.IsAssignableFrom(foreignObj.GetType())) {
 					property.SetValue(targetModel, foreignObj);
 				}
 			}
+
 			result.Add(targetModel);
 		}
 
 		return result;
 	}
-	
+
 	public static List<T> Select(Condition condition) {
 		T targetModel = (T) typeof(T).GetConstructor(new Type[0]).Invoke(null);
 		using SqliteConnection connection = new SqliteConnection(ConnectionString);
@@ -86,12 +98,12 @@ public class Database<T> {
 		PropertyInfo identifier = FindParams.GetModelsId(typeof(T));
 		qb.Select(typeof(T).Name).Where(condition);
 		cmd.CommandText = qb.ToString();
-		
+
 		Dictionary<string, object> values = condition.GetValues();
 		foreach (var kvp in values) {
 			cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
 		}
-		
+
 		using SqliteDataReader reader = cmd.ExecuteReader();
 
 		return Read(reader);
@@ -104,28 +116,29 @@ public class Database<T> {
 		QueryBuilder qb = new QueryBuilder();
 		PropertyInfo identifier = FindParams.GetModelsId(typeof(T));
 		qb.Select(typeof(T).Name);
-	
+
 		qb.Where(identifier.Name, "=");
 
 		cmd.CommandText = qb.ToString();
 
 		cmd.Parameters.AddWithValue(identifier.Name, id);
-		
+
 		using SqliteDataReader reader = cmd.ExecuteReader();
 
 		return Read(reader)[0];
 	}
-	
+
 	public static List<T> SelectAll(Condition? condition = null) {
 		using SqliteConnection connection = new SqliteConnection(ConnectionString);
 		connection.Open();
 		using SqliteCommand cmd = connection.CreateCommand();
-		
+
 		QueryBuilder qb = new QueryBuilder();
 		qb.Select(typeof(T).Name);
 		if (condition != null) {
 			qb.Where(condition);
 		}
+
 		cmd.CommandText = qb.ToString();
 
 		if (condition != null) {
@@ -134,7 +147,7 @@ public class Database<T> {
 				cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
 			}
 		}
-		
+
 		using SqliteDataReader reader = cmd.ExecuteReader();
 
 		return Read(reader);
@@ -155,12 +168,13 @@ public class Database<T> {
 
 		foreach (var prop in keys) {
 			if (!Attribute.IsDefined(prop, typeof(IdentifierAttribute))
-			        && !Attribute.IsDefined(prop, typeof(ForeignObjectAttribute))) {
+			    && !Attribute.IsDefined(prop, typeof(ForeignObjectAttribute))) {
 				object? value = Utils.GetPropValue(model, prop.Name);
 				if (value == null && Attribute.IsDefined(prop, typeof(OptionalAttribute))) {
-					paramsToBeRemoved.Add(prop);	
+					paramsToBeRemoved.Add(prop);
 					continue;
 				}
+
 				cmd.Parameters.AddWithValue(prop.Name, value);
 				continue;
 			}
@@ -168,13 +182,14 @@ public class Database<T> {
 			PropertyInfo? foreignIdInfo = FindParams.GetModelsId(prop.PropertyType);
 			object? foreignObj = Utils.GetPropValue(model, prop.Name);
 			if (foreignObj == null && Attribute.IsDefined(prop, typeof(OptionalAttribute))) {
-				paramsToBeRemoved.Add(prop);	
+				paramsToBeRemoved.Add(prop);
 				continue;
 			}
+
 			object? foreignId = Utils.GetPropValue(foreignObj, foreignIdInfo.Name);
 			cmd.Parameters.AddWithValue(propToKeyName[prop], foreignId);
 		}
-			
+
 		List<string> keyString = keys.Except(paramsToBeRemoved).Select(p => FindParams.GetParamName(p)).ToList();
 		QueryBuilder qb = new QueryBuilder();
 		qb.Insert(typeof(T).Name).Values(keyString);
@@ -192,7 +207,7 @@ public class Database<T> {
 	public static void Delete(T model) {
 		using SqliteConnection connection = new SqliteConnection(ConnectionString);
 		connection.Open();
-		
+
 		PropertyInfo id = FindParams.GetModelsId(typeof(T));
 		using SqliteTransaction transaction = connection.BeginTransaction(System.Data.IsolationLevel.Serializable);
 
@@ -230,7 +245,7 @@ public class Database<T> {
 		cmd.Parameters.AddWithValue(identifier.Name, idVal);
 		foreach (var prop in keys) {
 			if (!Attribute.IsDefined(prop, typeof(IdentifierAttribute))
-			       && !Attribute.IsDefined(prop, typeof(ForeignObjectAttribute))) {
+			    && !Attribute.IsDefined(prop, typeof(ForeignObjectAttribute))) {
 				object value = Utils.GetPropValue(model, prop.Name);
 				cmd.Parameters.AddWithValue(prop.Name, value);
 				continue;
