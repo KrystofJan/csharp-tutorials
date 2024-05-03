@@ -319,32 +319,40 @@
     ]
   },
   "packageFolders": {
-    "/home/zahry/.nuget/packages/": {}
+    "C:\\Users\\zahry\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/zahry/school/CSharp/project/Project/DatabaseHandler/DatabaseHandler.csproj",
+      "projectUniqueName": "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\DatabaseHandler\\DatabaseHandler.csproj",
       "projectName": "DatabaseHandler",
-      "projectPath": "/home/zahry/school/CSharp/project/Project/DatabaseHandler/DatabaseHandler.csproj",
-      "packagesPath": "/home/zahry/.nuget/packages/",
-      "outputPath": "/home/zahry/school/CSharp/project/Project/DatabaseHandler/obj/",
+      "projectPath": "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\DatabaseHandler\\DatabaseHandler.csproj",
+      "packagesPath": "C:\\Users\\zahry\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\DatabaseHandler\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/zahry/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\zahry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/zahry/school/CSharp/project/Project/DatabaseAttrs/DatabaseAttrs.csproj": {
-              "projectPath": "/home/zahry/school/CSharp/project/Project/DatabaseAttrs/DatabaseAttrs.csproj"
+            "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\DatabaseAttrs\\DatabaseAttrs.csproj": {
+              "projectPath": "C:\\Users\\zahry\\CSharp2-tutorials\\project\\Project\\DatabaseAttrs\\DatabaseAttrs.csproj"
             }
           }
         }
@@ -384,7 +392,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/zahry/.dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

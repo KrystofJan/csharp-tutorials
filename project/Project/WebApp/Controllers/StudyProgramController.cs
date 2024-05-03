@@ -4,7 +4,7 @@ using Models;
 using WebApp.Services;
 namespace WebApp.Controllers;
 
-public class StudyProgramController {
+public class StudyProgramController : Controller {
 	
 	[HttpGet]
 	public JsonResult GetStudyProgram(string value) {
