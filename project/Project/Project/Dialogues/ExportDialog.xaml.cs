@@ -34,7 +34,7 @@ public partial class ExportDialog : Window {
 		dlg.Filter = "JSON Files (*.json)|*.json";
 		dlg.DefaultExt = "json";
 		dlg.AddExtension = true;
-		Nullable<bool> result = dlg.ShowDialog();
+		bool? result = dlg.ShowDialog();
 		if (result != true) {
 			return;
 		}
@@ -63,7 +63,7 @@ public partial class ExportDialog : Window {
 		dlg.Filter = "XML Files (*.xml)|*.xml";
 		dlg.DefaultExt = "xml";
 		dlg.AddExtension = true;
-		Nullable<bool> result = dlg.ShowDialog();
+		bool? result = dlg.ShowDialog();
 		if (result != true) {
 			return;
 		}
