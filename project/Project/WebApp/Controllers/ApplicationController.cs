@@ -18,7 +18,14 @@ public class ApplicationController : Controller {
 		_applicationService = applicationService;
 	}
 
-	public IActionResult Index(int id) {
+	public IActionResult Index() {
+		return RedirectToAction("Form");
+	}
+	
+	public IActionResult Detail(int id) {
+		if (id == 0) {
+			return RedirectToAction("Form");
+		}
 		Application a = _applicationService.GetApplication(id);
 		ViewBag.Application = a;
 		return View();
@@ -37,11 +44,11 @@ public class ApplicationController : Controller {
 		}
 		Console.WriteLine("We good");
 		Application a = _applicationService.CreateApplication(form);
-		return RedirectToAction("Index", new {id = a.ApplicationId});
+		return RedirectToAction("Detail", new {id = a.ApplicationId});
 	}
 
 	public override void OnActionExecuting(ActionExecutingContext context) {
-		ViewBag.StudyPrograms = _studyProgramService.SelectedProgramsSet;
+		
 		base.OnActionExecuting(context);
 	}
 

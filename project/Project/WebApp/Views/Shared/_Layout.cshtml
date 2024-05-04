@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - WebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/styles/schoolList.css" type="text/css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/styles/form.css" type="text/css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/styles/appDetail.css" type="text/css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/styles/layout.css" type="text/css" asp-append-version="true">
@@ -20,7 +21,7 @@
     <nav class="HeaderNav">
         <a href="@Url.Action("Index", "Home")">Domu</a>
         <a href="@Url.Action("Form", "Application")">Podat Přihlášku</a>
-        <a href="@Url.Action("Index", "Application")">Seznam škol</a>
+        <a href="@Url.Action("Index", "School")">Seznam škol</a>
     </nav>
 </header>
 @RenderBody()

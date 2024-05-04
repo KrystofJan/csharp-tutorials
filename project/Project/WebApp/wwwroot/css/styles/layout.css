@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.MainContent{
+.MainContent {
     padding: 8rem 2.25rem;
     max-width: 1200px;
     margin: auto;
@@ -26,7 +26,8 @@
     align-items: center;
     transition: .25s ease-in-out;
 }
-.HeaderLogo:hover{
+
+.HeaderLogo:hover {
     color: white;
     opacity: .7;
 }
@@ -39,13 +40,13 @@
 .HeaderNav a {
     text-decoration: none;
     color: white;
-    position:relative;
+    position: relative;
 }
 
-.HeaderNav a::before{
+.HeaderNav a::before {
     content: '';
     background: #fff;
-    position:absolute;
+    position: absolute;
     bottom: -2px;
     left: 50%;
     transform: translateX(-50%);
@@ -54,6 +55,6 @@
     transition: .25s ease-in-out;
 }
 
-.HeaderNav a:hover::before{
+.HeaderNav a:hover::before {
     width: 100%;
 }

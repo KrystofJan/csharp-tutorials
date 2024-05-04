@@ -9,4 +9,8 @@ public class SchoolService {
 	public List<School> GetSchools() {
 		return Database<School>.SelectAll();
 	}
+
+	public School GetSchoolById(int id) {
+		return Database<School>.SelectById(id);
+	}
 }

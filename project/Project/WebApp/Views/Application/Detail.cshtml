@@ -1,0 +1,95 @@
+@using System.Formats.Asn1
+@using Models
+@{
+    Application application = @ViewBag.Application;
+}
+<h1>Hello world !</h1>
+
+<div class="Application">
+    <div class="Application-item Student">
+        <h3>Informace o studentovi</h3>
+        <div class="Student-attr attr">
+            <span class="Student-attrLabel attrLabel">Id:</span>
+            <span class="Student-attrValue attrValue">@application.Student.StudentId</span>
+        </div>
+        <div class="Student-attr attr">
+            <span class="Student-attrLabel attrLabel">Jméno: </span>
+            <span class="Student-attrValue attrValue">@application.Student.FirstName</span>
+        </div>
+        <div class="Student-attr attr">
+            <span class="Student-attrLabel attrLabel">Příjmení: </span>
+            <span class="Student-attrValue attrValue">@application.Student.LastName</span>
+        </div>
+        <div class="Student-attr attr">
+            <span class="Student-attrLabel attrLabel">Login: </span>
+            <span class="Student-attrValue attrValue">@application.Student.Login</span>
+        </div>
+        <div class="Student-attr attr">
+            <span class="Student-attrLabel attrLabel">Email: </span>
+            <span class="Student-attrValue attrValue">@application.Student.Email</span>
+        </div>
+        <div class="Student-attr attr">
+            <span class="Student-attrLabel attrLabel">Datum narození: </span>
+            <span class="Student-attrValue attrValue">@application.Student.DateOfBirth</span>
+        </div>
+        <div class="Student-attr attr">
+            <span class="Student-attrLabel attrLabel">Telefonní číslo: </span>
+            <span class="Student-attrValue attrValue">@application.Student.Phone</span>
+        </div>
+    </div>
+    <div class="Application-item Address">
+        <h3>Bydliště</h3>
+        <div class="Address-attr attr">
+            <span class="Address-attrLabel attrLabel">Adresa</span>
+            <span class="Address-attrValue attrValue">
+                <span class="attrValue0">@application.Student.Address.Country</span>
+                <span class="attrValue1">@application.Student.Address.City, @application.Student.Address.Province</span>
+                <span class="attrValue2">@application.Student.Address.Street, @application.Student.Address.BuildingNumber</span>
+            </span>
+        </div>
+    </div>
+    <div class="Application-item StudyPrograms">
+        <h3>Vybrané studijní obory</h3>
+        <div class="Address-attr attr">
+            <span class="Address-attrLabel attrLabel">@application.TertiaryProgram.StudyProgramCode</span>
+            <span class="Address-attrValue attrValue">
+                @application.TertiaryProgram.Summary
+            </span>
+            <span class="Address-attrValue attrValue">
+                @application.TertiaryProgram.School
+            </span>
+        </div>
+
+        @if (application.SecondaryProgram != null) {
+            <div class="Address-attr attr">
+                <span class="Address-attrLabel attrLabel">@application.TertiaryProgram.StudyProgramCode</span>
+                <span class="Address-attrValue attrValue">
+                    @application.TertiaryProgram.Summary
+                </span>
+                <span class="Address-attrValue attrValue">
+                    @application.TertiaryProgram.School
+                </span>
+            </div>
+        }
+        @if (application.TertiaryProgram != null) {
+            <div class="Address-attr attr">
+                <span class="Address-attrLabel attrLabel">@application.TertiaryProgram.StudyProgramCode</span>
+                <span class="Address-attrValue attrValue">
+                    @application.TertiaryProgram.Summary
+                </span>
+                <span class="Address-attrValue attrValue">
+                    @application.TertiaryProgram.School
+                </span>
+            </div>
+        }
+    </div>
+    <div class="Application-item Date">
+
+        <div class="attr">
+            <span class="attrLabel">Datum podání:</span>
+            <span class="attrValue">
+                @application.SubmissionDate
+            </span>
+        </div>
+    </div>
+</div>

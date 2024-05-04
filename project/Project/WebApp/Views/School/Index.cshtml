@@ -1,0 +1,28 @@
+@using Models
+@{
+    ViewData["Title"] = "Školy";
+    List<School> Schools = ViewBag.Schools;
+}
+
+<div class="MainContent">
+    <h2>Seznam škol</h2>
+
+    <div class="SchoolList">
+        @foreach (School school in Schools) {
+            <div class="SchoolList-item SchoolItem">
+                <h3 class="SchoolItem-heading">@school.SchoolName</h3>
+                <div class="SchoolItem-content">
+                    <div class="SchoolItem-contentAttr">
+                        <span class="schoolAttr-label">email: </span>
+                        <span>@school.ContactEmail</span>
+                    </div>
+                    <div class="SchoolItem-contentAttr">
+                        <span class="schoolAttr-label">tel: </span>
+                        <span>@school.ContactPhone</span>
+                    </div>
+                </div>
+                <a href="@Url.Action("Detail", "School", new {id = school.SchoolId})">Zobrazit detail</a> 
+            </div>     
+        }
+    </div>
+</div>
