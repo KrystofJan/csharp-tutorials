@@ -1,28 +1,67 @@
 @using Models
+@model SchoolSearch 
 @{
     ViewData["Title"] = "Školy";
-    List<School> Schools = ViewBag.Schools;
 }
 
 <div class="MainContent">
     <h2>Seznam škol</h2>
 
+    @Html.TextBoxFor(x => x.Term, new {@placeholder = "Vyhledat školu"})
+
     <div class="SchoolList">
-        @foreach (School school in Schools) {
-            <div class="SchoolList-item SchoolItem">
-                <h3 class="SchoolItem-heading">@school.SchoolName</h3>
-                <div class="SchoolItem-content">
-                    <div class="SchoolItem-contentAttr">
-                        <span class="schoolAttr-label">email: </span>
-                        <span>@school.ContactEmail</span>
+        <div class="SchoolList-wrapper">
+            @foreach (School school in ViewBag.Schools) {
+                <div class="SchoolList-item SchoolItem">
+                    <h3 class="SchoolItem-heading">@school.SchoolName</h3>
+                    <div class="SchoolItem-content">
+                        <div class="SchoolItem-contentAttr">
+                            <span class="schoolAttr-label">email: </span>
+                            <span>@school.ContactEmail</span>
+                        </div>
+                        <div class="SchoolItem-contentAttr">
+                            <span class="schoolAttr-label">tel: </span>
+                            <span>@school.ContactPhone</span>
+                        </div>
                     </div>
-                    <div class="SchoolItem-contentAttr">
-                        <span class="schoolAttr-label">tel: </span>
-                        <span>@school.ContactPhone</span>
-                    </div>
+                    <a href="@Url.Action("Detail", "School", new { id = school.SchoolId })">Zobrazit detail</a>
                 </div>
-                <a href="@Url.Action("Detail", "School", new {id = school.SchoolId})">Zobrazit detail</a> 
-            </div>     
-        }
+            }
+        </div>
     </div>
 </div>
+
+@section Scripts {
+
+    <script>
+        const successfulGet = (result) => {
+            $('.SchoolList').load(location.href + ' .SchoolList-wrapper');
+            console.log(result)
+        }
+
+        const failGet = (request, status, error) => {
+
+        }
+
+        const findByKey = () => {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetSchoolsByName", "School")",
+                dataType: "json",
+                data: {
+                    value: `%${$('#Term').val()}%`
+                },
+                success: successfulGet,
+                error: failGet
+            });
+        }
+
+        $('#Term').keyup(() => {
+            findByKey();
+        });
+
+        $('#Term').focus( () => {
+            findByKey();
+        });
+    </script>
+}

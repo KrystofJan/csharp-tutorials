@@ -1,6 +1,46 @@
 @using Models
 @{
-    School s = ViewBag.School;   
+    School school = ViewBag.School;
+    List<StudyProgram> studyPrograms = ViewBag.StudyPrograms;
+    string danger = "alert-ok";
 }
 
-@s.SchoolName
+<div class="School MainContent">
+
+    <h2>@school.SchoolName</h2>
+    <div class="School-detail">
+        <span class="attrLabel">Id</span>
+        <span class="attrValue">
+            @school.SchoolId
+        </span>
+
+    </div>
+    <div class="School-address">
+        <span class="attrLabel">Adresa</span>
+        <span class="attrValue">
+            <span class="attrValue0">@school.Address.Country</span>
+            <span class="attrValue1">@school.Address.City, @school.Address.Province</span>
+            <span class="attrValue2">@school.Address.Street, @school.Address.BuildingNumber</span>
+        </span>
+    </div>
+    <div class="School-programs">
+        <span class="attrLabel">Studijní programy</span>
+        <div class="ProgramDetail">
+            @foreach (StudyProgram studyProgram in studyPrograms) {
+                <div class="ProgramDetail-item">
+                    @if (studyProgram.MaximumCapacity <= studyProgram.CurrentCapacity) {
+                        danger = "alert-gone";
+                    }
+                    else if (studyProgram.MaximumCapacity <= studyProgram.CurrentCapacity + 25) {
+                        danger = "alert-danger";
+                    }
+                    <span class="alert @danger"></span>
+                    <span class="attrLabel">@studyProgram.Summary - @studyProgram.StudyProgramCode</span>
+                    <span class="attrValue">
+                        <span class="attrValue0">@studyProgram.CurrentCapacity - @studyProgram.MaximumCapacity</span>
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

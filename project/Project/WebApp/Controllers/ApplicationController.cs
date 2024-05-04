@@ -8,12 +8,12 @@ using WebApp.Models;
 namespace WebApp.Controllers;
 
 public class ApplicationController : Controller {
-	private readonly SchoolService _schoolService;
 	private readonly StudyProgramService _studyProgramService;
 	private readonly ApplicationService _applicationService;
+	private readonly StudyProgramSearchService _studyProgramSearchService;
 
-	public ApplicationController(SchoolService schoolService, StudyProgramService studyProgramService, ApplicationService applicationService) {
-		_schoolService = schoolService;
+	public ApplicationController(SchoolService schoolService, StudyProgramService studyProgramService, ApplicationService applicationService, StudyProgramSearchService studyProgramSearchService) {
+		_studyProgramSearchService = studyProgramSearchService;
 		_studyProgramService = studyProgramService;
 		_applicationService = applicationService;
 	}
@@ -33,7 +33,7 @@ public class ApplicationController : Controller {
 	
 
 	public IActionResult Form() {
-		ViewBag.StudyPrograms = _studyProgramService.SelectedProgramsSet;
+		ViewBag.StudyPrograms = _studyProgramSearchService.SelectedProgramsSet;
 		return View();
 	}
 
@@ -55,22 +55,22 @@ public class ApplicationController : Controller {
 	[HttpPost]
 	public IActionResult AddToList(int id) {
 		StudyProgram sp = _studyProgramService.GetSpecificProgramById(id);
-		if (_studyProgramService.ProgramCount >= 3) {
+		if (_studyProgramSearchService.ProgramCount >= 3) {
 			return StatusCode(507);
 		}
-		_studyProgramService.Add(sp);
-		Console.WriteLine(string.Join(", ", _studyProgramService.SelectedProgramsSet.Select(x => x.StudyProgramCode)));
+		_studyProgramSearchService.Add(sp);
+		Console.WriteLine(string.Join(", ", _studyProgramSearchService.SelectedProgramsSet.Select(x => x.StudyProgramCode)));
 		return Created();
 	}
 
 	// Needs to be post, due to ajax
 	[HttpPost]
 	public IActionResult RemoveFromList(int studyProgramId) {
-		if (_studyProgramService.ProgramCount <= 0) {
+		if (_studyProgramSearchService.ProgramCount <= 0) {
 			return StatusCode(507);
 		}
-		_studyProgramService.Remove(studyProgramId);
-		Console.WriteLine(string.Join(", ", _studyProgramService.SelectedProgramsSet.Select(x => x.StudyProgramCode)));
+		_studyProgramSearchService.Remove(studyProgramId);
+		Console.WriteLine(string.Join(", ", _studyProgramSearchService.SelectedProgramsSet.Select(x => x.StudyProgramCode)));
 		return Created();
 	}
 }

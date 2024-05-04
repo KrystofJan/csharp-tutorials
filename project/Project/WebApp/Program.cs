@@ -8,6 +8,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<SchoolService>();
 builder.Services.AddSingleton<StudyProgramService>();
 builder.Services.AddSingleton<ApplicationService>();
+builder.Services.AddSingleton<SchoolSearchService>();
+builder.Services.AddSingleton<StudyProgramSearchService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -7,14 +7,16 @@ namespace WebApp.Controllers;
 public class StudyProgramController : Controller {
 
 	private readonly StudyProgramService _studyProgramService;
+	private readonly StudyProgramSearchService _studyProgramSearchService;
 
-	public StudyProgramController(StudyProgramService studyProgramService) {
+	public StudyProgramController(StudyProgramService studyProgramService, StudyProgramSearchService studyProgramSearchService) {
 		_studyProgramService = studyProgramService;
+		_studyProgramSearchService = studyProgramSearchService;
 	}
 	
 	[HttpGet]
 	public JsonResult GetStudyProgram(string value) {
-		List<StudyProgram> studyPrograms = _studyProgramService.GetStudyProgramBySchoolName(value);
+		List<StudyProgram> studyPrograms = _studyProgramSearchService.GetStudyProgramBySchoolName(value);
 		if (studyPrograms.Count < 0) {
 			return new JsonResult("Not found :(");
 		}

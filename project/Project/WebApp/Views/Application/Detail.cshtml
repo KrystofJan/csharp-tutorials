@@ -5,7 +5,7 @@
 }
 <h1>Hello world !</h1>
 
-<div class="Application">
+<div class="Application MainContent">
     <div class="Application-item Student">
         <h3>Informace o studentovi</h3>
         <div class="Student-attr attr">
@@ -51,23 +51,23 @@
     <div class="Application-item StudyPrograms">
         <h3>Vybrané studijní obory</h3>
         <div class="Address-attr attr">
-            <span class="Address-attrLabel attrLabel">@application.TertiaryProgram.StudyProgramCode</span>
+            <span class="Address-attrLabel attrLabel">@application.PrimaryProgram.StudyProgramCode</span>
             <span class="Address-attrValue attrValue">
-                @application.TertiaryProgram.Summary
+                @application.PrimaryProgram.Summary
             </span>
             <span class="Address-attrValue attrValue">
-                @application.TertiaryProgram.School
+                @application.PrimaryProgram.School
             </span>
         </div>
 
         @if (application.SecondaryProgram != null) {
             <div class="Address-attr attr">
-                <span class="Address-attrLabel attrLabel">@application.TertiaryProgram.StudyProgramCode</span>
+                <span class="Address-attrLabel attrLabel">@application.SecondaryProgram.StudyProgramCode</span>
                 <span class="Address-attrValue attrValue">
-                    @application.TertiaryProgram.Summary
+                    @application.SecondaryProgram.Summary
                 </span>
                 <span class="Address-attrValue attrValue">
-                    @application.TertiaryProgram.School
+                    @application.SecondaryProgram.School
                 </span>
             </div>
         }
