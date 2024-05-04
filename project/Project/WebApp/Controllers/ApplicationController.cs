@@ -16,6 +16,7 @@ public class ApplicationController : Controller {
 		_studyProgramSearchService = studyProgramSearchService;
 		_studyProgramService = studyProgramService;
 		_applicationService = applicationService;
+		ViewBag.StudyPrograms = _studyProgramSearchService.SelectedProgramsSet;
 	}
 
 	public IActionResult Index() {
@@ -33,7 +34,6 @@ public class ApplicationController : Controller {
 	
 
 	public IActionResult Form() {
-		ViewBag.StudyPrograms = _studyProgramSearchService.SelectedProgramsSet;
 		return View();
 	}
 
@@ -48,7 +48,7 @@ public class ApplicationController : Controller {
 	}
 
 	public override void OnActionExecuting(ActionExecutingContext context) {
-		
+		ViewBag.StudyPrograms = _studyProgramSearchService.SelectedProgramsSet;
 		base.OnActionExecuting(context);
 	}
 
