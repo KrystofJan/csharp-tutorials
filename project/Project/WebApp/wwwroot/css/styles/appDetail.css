@@ -1,0 +1,44 @@
+.Application{
+    display: grid;
+    grid-template-areas: 
+        "student study"
+        "addr study"
+        "date .";
+    gap: 1.5rem 3rem;
+    margin: 0 auto;
+    padding: 1.5rem 3rem;
+    border-radius: .5rem;
+    border: 1px solid black;
+    max-width: 1200px;
+}
+.Student {
+    grid-area: student;
+}
+
+.Address {
+    grid-area: addr;
+}
+
+.StudyPrograms {
+    grid-area: study;
+}
+
+.Date {
+    grid-area: date ;
+}
+
+.Application-item {
+    display:flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.attr {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+}
+
+.attrLabel {
+    font-weight: 700;
+}
+

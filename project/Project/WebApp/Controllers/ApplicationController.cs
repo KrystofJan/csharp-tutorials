@@ -10,74 +10,34 @@ namespace WebApp.Controllers;
 public class ApplicationController : Controller {
 	private readonly SchoolService _schoolService;
 	private readonly StudyProgramService _studyProgramService;
+	private readonly ApplicationService _applicationService;
 
-	public ApplicationController(SchoolService schoolService, StudyProgramService studyProgramService) {
+	public ApplicationController(SchoolService schoolService, StudyProgramService studyProgramService, ApplicationService applicationService) {
 		_schoolService = schoolService;
 		_studyProgramService = studyProgramService;
+		_applicationService = applicationService;
 	}
 
-	public IActionResult Index() {
-		ViewBag.Schools = _schoolService.GetSchools();
+	public IActionResult Index(int id) {
+		Application a = _applicationService.GetApplication(id);
+		ViewBag.Application = a;
 		return View();
 	}
+	
 
 	public IActionResult Form() {
 		ViewBag.StudyPrograms = _studyProgramService.SelectedProgramsSet;
-		ViewBag.ShowForm = true;
 		return View();
 	}
 
 	[HttpPost]
 	public IActionResult Form(ApplicationForm form) {
 		if (!ModelState.IsValid) {
-			ViewBag.ShowForm = true;
 			return View();
 		}
 		Console.WriteLine("We good");
-		Address a = new Address() {
-			ApartamentNumber = form.ApartamentNumber,
-			BuildingNumber = form.BuildingNumber,
-			Country = form.Country,
-			City = form.City,
-			Province = form.Province,
-			Street = form.Street,
-			PostalCode = form.PostalCode
-		};
-		int addressId = Database<Address>.Insert(a);
-		a.AddressId = addressId;
-		Student s = new Student {
-			DateOfBirth = form.DateOfBirth,
-			Address = a,
-			Email = form.Email,
-			FirstName = form.FirstName,
-			LastName = form.LastName,
-			Login = form.Login,
-			Phone = form.Phone
-		};
-		int studentId = Database<Student>.Insert(s);
-		s.StudentId = studentId;
-		Application application = new Application {
-			Student = s,
-			PrimaryProgram = new StudyProgram { StudyProgramId = form.PrimaryProgramId }
-		};
-
-		if (form.SecondaryProgramId != null) {
-			application.SecondaryProgram = new StudyProgram { StudyProgramId = (int)form.SecondaryProgramId };
-		}
-
-		if (form.TertiaryProgramId != null) {
-			application.TertiaryProgram = new StudyProgram { StudyProgramId = (int)form.TertiaryProgramId };
-		}
-
-		int appId = Database<Application>.Insert(application);
-		application.ApplicationId = appId;
-		Console.WriteLine(appId);
-		ViewBag.ShowForm = false;
-		ViewBag.ApplicationId = appId;
-		ViewBag.CreatedAddress = a;
-		ViewBag.CreatedStudent = s;
-		ViewBag.CreatedApplication = application;
-		return View();
+		Application a = _applicationService.CreateApplication(form);
+		return RedirectToAction("Index", new {id = a.ApplicationId});
 	}
 
 	public override void OnActionExecuting(ActionExecutingContext context) {

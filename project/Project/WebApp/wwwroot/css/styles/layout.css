@@ -9,8 +9,13 @@
 .HeaderNav {
     display: flex;
     gap: 2rem;
-
     align-items: center;
+}
+
+.MainContent{
+    padding: 8rem 2.25rem;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .HeaderLogo {
