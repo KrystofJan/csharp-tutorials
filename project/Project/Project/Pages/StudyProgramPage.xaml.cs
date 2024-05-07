@@ -16,7 +16,6 @@ public partial class StudyProgramPage : Page {
 		StudyPrograms = new BindingList<StudyProgram>();
 		Thread t = new Thread(FetchData);
 		t.Start();
-		// FetchData();
 		InitializeComponent();
 		DataContext = this;
 	}

@@ -26,7 +26,6 @@ public partial class SchoolPage : Page {
 		ButtonText = "Přidej školu";
 		Thread t = new Thread(FetchData);
 		t.Start();
-		// FetchData();
 		InitializeComponent();
 		DataContext = this;
 	}

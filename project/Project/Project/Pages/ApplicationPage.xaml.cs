@@ -28,7 +28,6 @@ public partial class ApplicationPage : Page {
 		ButtonText = "Přidej adresu";
 		Thread t = new Thread(FetchData);
 		t.Start();
-		// FetchData();
 		InitializeComponent();
 		DataContext = this;
 	}
