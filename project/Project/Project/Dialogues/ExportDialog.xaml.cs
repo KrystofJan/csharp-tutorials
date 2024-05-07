@@ -1,6 +1,9 @@
+using System.Globalization;
 using System.IO;
 using System.Reflection.Metadata;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
 using System.Windows;
 using System.Xml.Serialization;
 using Microsoft.Win32;
@@ -16,13 +19,15 @@ public partial class ExportDialog : Window {
 	public object SerializableObj { get; set; }
 	public List<object> SerializableObjList { get; set; }
 	private TypeOfExport ExpType { get; set; }
-	
+
 	public ExportDialog(object ser) {
 		SerializableObj = ser;
 		ExpType = TypeOfExport.EXPORT_SINGLE;
+		CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+		CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
 		InitializeComponent();
 	}
-	
+
 	public ExportDialog(List<object> ser) {
 		SerializableObjList = ser;
 		ExpType = TypeOfExport.EXPORT_LIST;
@@ -38,26 +43,35 @@ public partial class ExportDialog : Window {
 		if (result != true) {
 			return;
 		}
+
 		string filename = dlg.FileName;
 		Task.Run(() => ExportJson(filename));
 		Close();
 	}
-	
+
 	private async Task ExportJson(string fileName) {
 		try {
 			string json;
 			if (ExpType == TypeOfExport.EXPORT_LIST) {
-				json = JsonSerializer.Serialize(SerializableObjList, new JsonSerializerOptions{WriteIndented = true});
+				json = JsonSerializer.Serialize(SerializableObjList,  new JsonSerializerOptions {
+						WriteIndented = true,
+						Encoder = JavaScriptEncoder.Create(UnicodeRanges.All, UnicodeRanges.NumberForms)
+					});
 				await File.WriteAllTextAsync(fileName, json);
 				return;
 			}
-			json = JsonSerializer.Serialize(SerializableObj, new JsonSerializerOptions{WriteIndented = true});
+
+			json = JsonSerializer.Serialize(SerializableObj, new JsonSerializerOptions {
+				WriteIndented = true,
+				Encoder = JavaScriptEncoder.Create(UnicodeRanges.All, UnicodeRanges.NumberForms)
+			});
 			await File.WriteAllTextAsync(fileName, json);
 		}
 		catch (Exception e) {
 			throw e;
 		}
 	}
+
 	private void XmlOp(object sender, RoutedEventArgs e) {
 		SaveFileDialog dlg = new SaveFileDialog();
 		dlg.Filter = "XML Files (*.xml)|*.xml";
@@ -67,10 +81,12 @@ public partial class ExportDialog : Window {
 		if (result != true) {
 			return;
 		}
+
 		string filename = dlg.FileName;
 		Task.Run(() => ExportXml(filename));
 		Close();
 	}
+
 	private async Task ExportXml(string fileName) {
 		try {
 			if (ExpType == TypeOfExport.EXPORT_LIST) {
@@ -80,6 +96,7 @@ public partial class ExportDialog : Window {
 				fs.Close();
 				return;
 			}
+
 			XmlSerializer serializer = new XmlSerializer(SerializableObj.GetType());
 			using FileStream fst = new FileStream(fileName, FileMode.OpenOrCreate);
 			await Task.Run(() => serializer.Serialize(fst, SerializableObj));

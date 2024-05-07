@@ -6,14 +6,15 @@
         xmlns:local="clr-namespace:Project.Dialogues"
         mc:Ignorable="d"
         Title="ExportDialog" Height="128" Width="254">
-    
-    <StackPanel Orientation="Horizontal" Width="Auto">
-        <Button 
-            Content="Json"
-            Click="JsonOp"
-            />                               
-        <Button
-            Content="XML"
-            Click="XmlOp"/>  
-    </StackPanel>
+
+	<StackPanel Orientation="Horizontal" Width="Auto">
+		<StackPanel Orientation="Vertical" Width="120px" Margin="67 0">
+			<Button
+				Content="Json"
+				Click="JsonOp" />
+			<Button
+				Content="XML"
+				Click="XmlOp" />
+		</StackPanel>
+	</StackPanel>
 </Window>

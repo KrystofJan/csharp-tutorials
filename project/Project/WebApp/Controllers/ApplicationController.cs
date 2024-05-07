@@ -42,7 +42,7 @@ public class ApplicationController : Controller {
 		if (!ModelState.IsValid) {
 			return View();
 		}
-		Console.WriteLine("We good");
+
 		Application a = _applicationService.CreateApplication(form);
 		return RedirectToAction("Detail", new {id = a.ApplicationId});
 	}
@@ -59,7 +59,7 @@ public class ApplicationController : Controller {
 			return StatusCode(507);
 		}
 		_studyProgramSearchService.Add(sp);
-		Console.WriteLine(string.Join(", ", _studyProgramSearchService.SelectedProgramsSet.Select(x => x.StudyProgramCode)));
+		// Console.WriteLine(string.Join(", ", _studyProgramSearchService.SelectedProgramsSet.Select(x => x.StudyProgramCode)));
 		return Created();
 	}
 
