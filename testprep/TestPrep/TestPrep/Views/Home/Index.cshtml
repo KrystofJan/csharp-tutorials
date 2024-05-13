@@ -1,0 +1,33 @@
+﻿@using System.Collections
+@using TestPrep.Services
+@model IndexForm
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @using (Html.BeginForm()) {
+        <div class="FormInput">
+            @Html.LabelFor(x => x.Name)
+            @Html.TextBoxFor(x => x.Name)
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+        <div class="FormInput">
+            @Html.LabelFor(x => x.Email)
+            @Html.TextBoxFor(x => x.Email)
+            @Html.ValidationMessageFor(x => x.Email)
+        </div>
+        <div class="FormInput">
+            @Html.LabelFor(x => x.ExchangeRate)
+            @Html.DropDownListFor(x => x.ExchangeRateName, new SelectList(ViewBag.ExchangeRates, "Name", "Name"))
+            @Html.ValidationMessageFor(x => x.ExchangeRateName)
+        </div>
+        <div class="FormInput">
+            @Html.LabelFor(x => x.Amount)
+            @Html.TextBoxFor(x => x.Amount)
+            @Html.ValidationMessageFor(x => x.Amount)
+        </div>
+        <button type="submit">Submit</button>
+    }
+</div>

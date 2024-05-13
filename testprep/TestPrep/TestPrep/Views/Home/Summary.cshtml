@@ -1,0 +1,14 @@
+@using TestPrep.Services
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<ul>
+    @foreach (Exchange exchangeRate in ViewBag.Exchanges) {
+        <li>
+            @exchangeRate.ExchangeId
+            @exchangeRate.Email
+            @exchangeRate.Name
+            @exchangeRate.Ammount
+        </li>
+    }
+</ul>
