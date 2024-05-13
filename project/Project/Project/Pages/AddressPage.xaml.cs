@@ -9,37 +9,36 @@ using Project.Dialogues;
 namespace Project;
 
 public partial class AddressPage : Page {
-
 	public BindingList<Address> Addresses { get; set; }
 	public List<Address> ExportedAddresses { get; set; }
 	public string ButtonText { get; set; }
-	
+
 	public Thickness ButtonMargin { get; set; } = new Thickness(
 		left: 10.0,
 		top: 0,
 		right: 10.0,
 		bottom: 10
 	);
-	
+
 	public AddressPage() {
 		Addresses = new BindingList<Address>();
 		ExportedAddresses = new List<Address>();
 		ButtonText = "Přidej adresu";
-		// TODO: Pridat vice vlaken do wpf -> JJ rikal, neco s dispatcherem
-		// Thread t = new Thread(FetchData);
-		// t.Start();
-		FetchData();
+		// TODO: Pridat vice vlaken do wpf -> JJ rikal, vyresit dispatcherem
+		Thread t = new Thread(FetchData);
+		t.Start();
 		InitializeComponent();
 		DataContext = this;
 	}
-	
-	private object lockObj = new object();
+
 	private void FetchData() {
-		Addresses.Clear();
-		List<Address> std = AddressService.FindAllAddresses();
-		foreach (var student in std) {
-			Addresses.Add(student);
-		}
+		Dispatcher.Invoke(() => {
+			Addresses.Clear();
+			List<Address> std = AddressService.FindAllAddresses();
+			foreach (var student in std) {
+				Addresses.Add(student);
+			}
+		});
 	}
 
 	private void AddAddress(object sender, RoutedEventArgs e) {
@@ -47,8 +46,8 @@ public partial class AddressPage : Page {
 		sd.ShowDialog();
 		if (sd.isSaved) {
 			int addressId = AddressService.CreateNewAddress(sd.Address);
-        	sd.Address.AddressId = addressId;
-        	Addresses.Add(sd.Address);
+			sd.Address.AddressId = addressId;
+			Addresses.Add(sd.Address);
 		}
 	}
 
@@ -57,13 +56,14 @@ public partial class AddressPage : Page {
 			AddressGrid.ItemsSource = Addresses;
 			return;
 		}
-		var filtered = Addresses.Where(s => 
+
+		var filtered = Addresses.Where(s =>
 			s.City.ToLower().Contains(textBox1.Text.ToLower()) ||
-			s.Street.ToLower().Contains(textBox1.Text.ToLower())||
+			s.Street.ToLower().Contains(textBox1.Text.ToLower()) ||
 			s.Country.ToLower().Contains(textBox1.Text.ToLower()) ||
 			s.Province.ToLower().Contains(textBox1.Text.ToLower()));
 
-		AddressGrid.ItemsSource = filtered;            
+		AddressGrid.ItemsSource = filtered;
 	}
 
 	private void Delete(object sender, RoutedEventArgs e) {
@@ -80,7 +80,7 @@ public partial class AddressPage : Page {
 		sd.ShowDialog();
 		if (sd.isSaved) {
 			AddressService.UpdateAddress(std);
-		}	
+		}
 	}
 
 	private void Export(object sender, RoutedEventArgs e) {
@@ -94,6 +94,7 @@ public partial class AddressPage : Page {
 		else {
 			exportSingle = new ExportDialog(ExportedAddresses[0]);
 		}
+
 		exportSingle.ShowDialog();
 	}
 

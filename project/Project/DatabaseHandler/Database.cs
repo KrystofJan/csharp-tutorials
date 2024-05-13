@@ -18,7 +18,6 @@ public class Database<T> {
 		}
 	}
 
-	// TODO: Add Error handeling. Return false on update and insert when error
 	private static List<T> Read(SqliteDataReader reader) {
 		List<T> result = new List<T>();
 		while (reader.Read()) {

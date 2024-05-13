@@ -1,15 +1,18 @@
 using DatabaseHandler;
 using DatabaseHandler.DatabaseUtility.WhereCondition;
 using Models;
+
 namespace WebApp.Services;
 
 public class StudyProgramSearchService {
 	public List<StudyProgram> SelectedProgramsSet { get; set; } = new List<StudyProgram>();
-	public int ProgramCount { get => SelectedProgramsSet.Count; }
-	
-	public StudyProgramSearchService() {
+
+	public int ProgramCount {
+		get => SelectedProgramsSet.Count;
 	}
-	
+
+	public StudyProgramSearchService() { }
+
 	public void Clear() {
 		SelectedProgramsSet.Clear();
 	}
@@ -18,6 +21,7 @@ public class StudyProgramSearchService {
 		if (value == "%%") {
 			return new List<StudyProgram>();
 		}
+
 		object val = value;
 		List<School> schools = new List<School>();
 		using (Condition schoolCondition = Condition.AddParam("SchoolName").Like(val).Build()) {
@@ -41,8 +45,10 @@ public class StudyProgramSearchService {
 					.Intersect(conditionedStudyProgram.Select(x => x.StudyProgramId).ToList())
 					.Contains(x.StudyProgramId)));
 		}
+
 		return conditionedStudyProgram;
 	}
+
 	public void Add(StudyProgram s) {
 		List<int> ids = SelectedProgramsSet.Select(x => x.StudyProgramId).ToList();
 		if (!ids.Contains(s.StudyProgramId))
