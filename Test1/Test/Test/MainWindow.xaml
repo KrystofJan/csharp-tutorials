@@ -1,0 +1,34 @@
+﻿<Window x:Class="Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Test"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+	<StackPanel Orientation="Vertical">
+		<StackPanel Orientation="Horizontal">
+			<ComboBox x:Name="CityBox" Width="248" ItemsSource="{Binding Mesta}" SelectedIndex="0" />
+			<Button Click="ChooseCity" Width="64">Potvrdit</Button>
+		</StackPanel>
+		<DataGrid Name="MestaGrid"
+		          ItemsSource="{Binding MestoList}"
+		          AutoGenerateColumns="False"
+		          ColumnWidth="*"
+		          CanUserAddRows="False">
+
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Název města" Binding="{Binding nazev}" />
+				<DataGridTextColumn Header="Ičo" Binding="{Binding ico}" />
+				<DataGridTextColumn Header="Datum zápisu" Binding="{Binding zapisDatum}" />
+				<DataGridTemplateColumn Header="Upravit">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Button Click="EditZaznam">Editovat</Button>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+	</StackPanel>
+</Window>
